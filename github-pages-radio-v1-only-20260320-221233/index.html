@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FiveMods</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0d;
+      --panel: rgba(17, 19, 24, 0.86);
+      --panel-strong: #13161d;
+      --line: rgba(255, 132, 24, 0.16);
+      --text: #f7f7f5;
+      --muted: #b8b1a7;
+      --accent: #ff7a00;
+      --accent-2: #ffbf66;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 122, 0, 0.26), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 191, 102, 0.16), transparent 24%),
+        linear-gradient(180deg, #08090c 0%, #10131a 100%);
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 46px 46px;
+      opacity: 0.26;
+      pointer-events: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1140px, 92vw); margin: 0 auto; position: relative; z-index: 1; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(10, 12, 16, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .logo-mark {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 122, 0, 0.12);
+      border: 1px solid rgba(255, 122, 0, 0.32);
+      box-shadow: 0 18px 34px rgba(255, 122, 0, 0.22);
+    }
+    .logo img {
+      width: 56px;
+      height: auto;
+      filter: drop-shadow(0 0 18px rgba(255,122,0,0.7));
+    }
+    .logo-text {
+      background: linear-gradient(90deg, #ffffff 0%, #ff9c33 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+    .nav a:hover { color: var(--text); background: rgba(255,122,0,0.12); }
+    .nav .cta {
+      color: #1b1004;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    .hero {
+      padding: 72px 0 34px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 122, 0, 0.14);
+      color: var(--accent-2);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1, h2 {
+      font-family: "Chakra Petch", sans-serif;
+      margin: 0;
+    }
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.02;
+    }
+    .hero p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+      max-width: 640px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #1a0d00;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 16px 30px rgba(255, 122, 0, 0.24);
+    }
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+    }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(23,25,31,0.96) 0%, rgba(15,17,22,0.96) 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .hero-card-body { padding: 24px; }
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 28px 0 20px;
+    }
+    .section-title p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+    .feature {
+      display: grid;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 22px;
+      padding: 22px;
+      border-radius: 26px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+      backdrop-filter: blur(14px);
+    }
+    .feature img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .feature-copy h2 { font-size: clamp(28px, 4vw, 42px); }
+    .feature-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 14px 0 22px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat strong { display: block; font-size: 28px; margin-bottom: 6px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 18px 0 42px;
+      font-size: 14px;
+    }
+    @media (max-width: 900px) {
+      .hero, .feature { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="FiveMods Ana Sayfa">
+        <span class="logo-mark"><img src="assets/logo.png" alt="FiveMods logo"></span>
+        <span class="logo-text">FiveMods</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="mods.html">Modlar</a>
+        <a class="cta" href="mods.html">Mod ?ndir</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Ilk Surum Yayinda</span>
+        <h1>FiveMods baslangic paketiyle temiz bir sekilde yayinda.</h1>
+        <p>Bu kurulumda sadece ilk surum olan <strong>Radio V1.0</strong> bulunuyor. Boylesi daha temiz bir yapi saglar; sonraki surumleri istersek tek tek ekleriz.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mods.html">Modlari Gor</a>
+          <a class="btn btn-secondary js-download-link" href="mods/radio.zip" download="radio.zip" data-download-slug="radio">ZIP Indir</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>1</strong>
+            <span>Aktif Mod</span>
+          </div>
+          <div class="stat">
+            <strong>V1.0</strong>
+            <span>Yayindaki Surum</span>
+          </div>
+          <div class="stat">
+            <strong>Temiz</strong>
+            <span>Sade Klasor Yapisi</span>
+          </div>
+        </div>
+      </div>
+
+      <article class="hero-card">
+        <img src="assets/gosteri-resmi-1.jpg" alt="Radio V1.0 onizleme gorseli">
+        <div class="hero-card-body">
+          <div class="meta">
+            <span class="chip">Radio V1.0</span>
+            <span class="chip">ZIP Hazir</span>
+          </div>
+          <h2>Kurulum kolay, paket temiz.</h2>
+          <p>resources klasorune atip server.cfg icine eklemen yeterli. Sonraki surumleri bu yapiyi bozmadan ustune ekleyebiliriz.</p>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">One Cikan Mod</span>
+          <h2>Radio V1.0</h2>
+          <p>Surum surum ilerlemek icin hazirlanan ilk temiz paket.</p>
+        </div>
+      </div>
+
+      <article class="feature">
+        <img src="assets/gosteri-resmi-1.jpg" alt="Radio V1.0 kart gorseli">
+        <div class="feature-copy">
+          <div class="meta">
+            <span class="chip">Kategori: Radio</span>
+            <span class="chip">Boyut: 15 KB</span>
+          </div>
+          <h2>Radio V1.0</h2>
+          <p>Baslangic paketi olarak sadece ilk surum yayinda tutuluyor. Bu sayede GitHub tarafinda da klasor duzeni bozulmaz ve her yeni surum sonradan eklenir.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mods.html">Detaya Git</a>
+            <a class="btn btn-secondary js-download-link" href="mods/radio.zip" download="radio.zip" data-download-slug="radio">ZIP Indir</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    FiveMods | Bu paket sadece ilk surumle acildi. Yeni surumler sonradan eklenecek.
+  </footer>
+
+  <script src="assets/fivemods-counter-config.js"></script>
+  <script src="assets/download-counter.js"></script>
+</body>
+</html>
