@@ -1,322 +1,800 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FiveMods - Modlar</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <style>
     :root {
-      --bg: #090a0d;
-      --panel: rgba(17, 19, 24, 0.88);
-      --line: rgba(255, 132, 24, 0.16);
-      --text: #f7f7f5;
-      --muted: #b8b1a7;
+      --bg: #0a0a0d;
+      --bg-2: #111319;
+      --card: #14141a;
+      --ink: #f5f6f8;
+      --muted: #9ca3af;
       --accent: #ff7a00;
-      --accent-2: #ffbf66;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --accent-2: #ffb347;
+      --line: rgba(255, 122, 0, 0.2);
+      --shadow: 0 22px 50px rgba(5, 6, 10, 0.55);
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-      color: var(--text);
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255, 122, 0, 0.24), transparent 28%),
-        linear-gradient(180deg, #08090c 0%, #11151c 100%);
+        radial-gradient(760px 420px at 12% -10%, rgba(255, 122, 0, 0.32) 0%, transparent 62%),
+        radial-gradient(720px 360px at 88% 6%, rgba(255, 179, 71, 0.22) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0a0d 0%, #070709 100%);
       min-height: 100vh;
     }
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 46px 46px;
-      opacity: 0.26;
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 52px 52px;
       pointer-events: none;
+      opacity: 0.35;
     }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1140px, 92vw); margin: 0 auto; position: relative; z-index: 1; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    h1,
+    h2,
+    .logo-text {
+      font-family: "Chakra Petch", "Plus Jakarta Sans", system-ui, sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 122, 0, 0.18);
+      color: var(--accent-2);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
     .site-header {
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(18px);
-      background: rgba(10, 12, 16, 0.82);
+      backdrop-filter: blur(12px);
+      background: rgba(10, 13, 18, 0.85);
       border-bottom: 1px solid var(--line);
     }
+
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 16px 0;
+      padding: 18px 0;
+      gap: 16px;
     }
+
     .logo {
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      font-family: "Chakra Petch", sans-serif;
-      font-size: 28px;
       font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      text-decoration: none;
     }
+
     .logo-mark {
-      width: 72px;
-      height: 72px;
-      border-radius: 22px;
+      width: 96px;
+      height: 96px;
       display: grid;
       place-items: center;
-      background: rgba(255, 122, 0, 0.12);
-      border: 1px solid rgba(255, 122, 0, 0.32);
-      box-shadow: 0 18px 34px rgba(255, 122, 0, 0.22);
+      border-radius: 24px;
+      background: rgba(255, 122, 0, 0.1);
+      border: 1px solid rgba(255, 122, 0, 0.4);
+      box-shadow: 0 14px 36px rgba(255, 122, 0, 0.28);
     }
-    .logo img {
-      width: 56px;
+
+    .logo-img {
+      width: 80px;
       height: auto;
-      filter: drop-shadow(0 0 18px rgba(255,122,0,0.7));
+      filter:
+        drop-shadow(0 0 28px rgba(255, 122, 0, 0.98))
+        drop-shadow(0 18px 34px rgba(0, 0, 0, 0.5))
+        brightness(1.08)
+        saturate(1.15);
     }
+
     .logo-text {
-      background: linear-gradient(90deg, #ffffff 0%, #ff9c33 100%);
+      font-size: 28px;
+      background: linear-gradient(90deg, #ffffff 0%, #ffb347 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
+
     .nav {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 18px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
+
     .nav a {
       color: var(--muted);
       font-size: 14px;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      transition: 0.2s ease;
+      transition: color 0.2s ease, background 0.2s ease;
     }
-    .nav a:hover { color: var(--text); background: rgba(255,122,0,0.12); }
+
+    .nav a:hover {
+      color: var(--ink);
+      background: rgba(255, 122, 0, 0.12);
+    }
+
     .nav .cta {
-      color: #1b1004;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #1b0b00;
+      background: linear-gradient(120deg, var(--accent), #ffb347);
+      font-weight: 600;
     }
+
     .hero {
-      padding: 66px 0 28px;
+      padding: 72px 0 42px;
       display: grid;
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 36px;
+      align-items: center;
     }
-    .eyebrow {
-      display: inline-flex;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 122, 0, 0.14);
-      color: var(--accent-2);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      margin: 14px 0;
     }
-    h1, h2 {
-      font-family: "Chakra Petch", sans-serif;
-      margin: 0;
-    }
-    h1 {
-      font-size: clamp(34px, 4vw, 56px);
-      margin-top: 16px;
-    }
-    .lead {
-      max-width: 720px;
+
+    .hero p {
       color: var(--muted);
-      line-height: 1.75;
-      font-size: 16px;
-      margin: 0;
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 520px;
     }
-    .search-box {
-      margin-top: 6px;
-      width: min(560px, 100%);
-      display: grid;
-      gap: 10px;
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    .search-box input {
-      width: 100%;
-      min-height: 54px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      padding: 0 18px;
+
+    .search {
+      display: flex;
+      gap: 12px;
+      background: rgba(20, 20, 28, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 8px;
+      width: min(440px, 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--ink);
       font-size: 15px;
       outline: none;
     }
-    .search-box input:focus {
-      border-color: rgba(255,122,0,0.45);
-      box-shadow: 0 0 0 4px rgba(255,122,0,0.10);
-    }
-    .search-hint, .result-count {
+
+    .search button {
+      border: none;
+      background: linear-gradient(120deg, var(--accent), #ffb347);
+      color: #1b0b00;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }    .search-hint {
+      margin-top: 8px;
+      font-size: 0.85rem;
       color: var(--muted);
-      font-size: 14px;
     }
-    .card {
-      margin: 28px 0 48px;
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 22px;
-      padding: 22px;
-      border-radius: 28px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-    }
-    .card img {
-      width: 100%;
-      min-height: 290px;
-      border-radius: 20px;
-      object-fit: cover;
-    }
-    .meta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .card p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin: 14px 0 22px;
-    }
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .btn {
+
+    .ghost-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      padding: 0 20px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: transform 0.18s ease;
+      padding: 11px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 122, 0, 0.35);
+      background: rgba(20, 20, 28, 0.72);
+      color: var(--ink);
+      font-weight: 600;
+      white-space: nowrap;
     }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary {
-      color: #1a0d00;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 16px 30px rgba(255, 122, 0, 0.24);
+
+    .hero-panel {
+      background: linear-gradient(145deg, rgba(20, 20, 28, 0.95), rgba(12, 12, 18, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: var(--shadow);
     }
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.08);
-    }
-    .empty {
-      display: none;
-      margin-bottom: 48px;
-      padding: 24px;
-      border-radius: 22px;
-      border: 1px dashed rgba(255,255,255,0.12);
-      color: var(--muted);
-      background: rgba(255,255,255,0.03);
-    }
-    .footer {
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      padding: 18px 0 42px;
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
       font-size: 14px;
+      color: var(--muted);
     }
+
+    .panel-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 122, 0, 0.12);
+    }
+
+    .panel-item span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .badge {
+      font-family: "Chakra Petch", ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      color: #1b0b00;
+      background: rgba(255, 179, 71, 0.85);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .categories {
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .cat {
+      background: rgba(20, 20, 28, 0.85);
+      border: 1px solid rgba(255, 122, 0, 0.12);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+
+    .cat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 122, 0, 0.35);
+    }
+
+    .cat strong {
+      font-size: 15px;
+    }
+
+    .cat .tag {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin: 0 0 8px;
+    }
+
+    .section p {
+      color: var(--muted);
+      margin: 0 0 22px;
+      max-width: 600px;
+    }
+
+    .mods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 122, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .card img {
+      height: 170px;
+      object-fit: cover;
+    }
+
+
+    .card-content {
+      padding: 18px;
+      flex: 1;
+    }
+
+    .card-content h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .card-content p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+    }
+
+    .download {
+      display: block;
+      margin: 18px;
+      text-align: center;
+      padding: 11px;
+      background: linear-gradient(90deg, var(--accent), #ffb347);
+      border-radius: 12px;
+      color: #1b0b00;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease;
+    }
+
+    .download:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, rgba(255, 122, 0, 0.2), rgba(255, 179, 71, 0.2));
+      border: 1px solid rgba(255, 122, 0, 0.2);
+      border-radius: 22px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-section h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .cta-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta-section a {
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: #141014;
+      border: 1px solid rgba(255, 122, 0, 0.25);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 50px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .reveal {
+      animation: rise 0.7s ease both;
+    }
+
+    .reveal-delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 900px) {
-      .card { grid-template-columns: 1fr; }
-      .header-inner { flex-direction: column; align-items: flex-start; }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .search {
+        flex-direction: column;
+      }
+
+      .search button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        animation: none;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="FiveMods Ana Sayfa">
-        <span class="logo-mark"><img src="assets/logo.png" alt="FiveMods logo"></span>
-        <span class="logo-text">FiveMods</span>
-      </a>
-      <nav class="nav">
-        <a href="index.html">Ana Sayfa</a>
-        <a href="mods.html">Modlar</a>
-        <a class="cta" href="mods/radio.zip" download="radio.zip" data-download-slug="radio">Mod Indir</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <span class="eyebrow">Modlar</span>
-      <h1>Su anda sadece ilk surum yayinda.</h1>
-      <p class="lead">Surum surum ilerlemek istedigin icin bu sayfada sadece <strong>Radio V1.0</strong> bulunuyor. Yeni surumler geldiginde bu yapinin uzerine tek tek eklenebilir.</p>
-      <div class="search-box">
-        <input id="search-input" type="search" placeholder="Mod ara... ornek: radio veya v1.0">
-        <div class="result-count" id="result-count">Sonuc: 1</div>
-        <div class="search-hint">Yazdikca otomatik filtrelenir.</div>
+  <div class="page">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="FiveMods">
+          <span class="logo-mark">
+            <img class="logo-img" src="assets/logo.png" alt="FiveMods logo" onerror="this.style.display='none'">
+          </span>
+          <span class="logo-text">FiveMods</span>
+        </a>
+        <nav class="nav">
+          <a href="index.html">Ana Sayfa</a>
+          <a href="mods.html">Modlar</a>
+          <a href="kategoriler.html">Kategoriler</a>
+          <a href="hakkinda.html">Hakkında</a>
+          <a class="cta" href="mods.html">Mod İndir</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <article class="card" id="radio-card" data-search="radio radio v1 v1.0 v10 baslangic ilk surum">
-      <img src="assets/gosteri-resmi-1.jpg" alt="Radio V1.0 gorseli">
-      <div>
-        <div class="meta">
-          <span class="chip">Radio</span>
-          <span class="chip">V1.0</span>
-          <span class="chip">ZIP Hazir</span>
+    <main class="container">
+      <section class="section" id="mods">
+        <h2>Modlar</h2>
+        <p>Tüm modlar burada listelenir. İndirme bağlantıları mod sayfasına gider.</p>
+        <div class="search" role="search">
+          <input type="text" placeholder="Mod ara... (1.4, v1.5, radio)" aria-label="Mod arama" data-mod-search oninput="window.__fmFilter && window.__fmFilter(this.value)">
+          <button type="button">Ara</button>
         </div>
-        <h2>Radio V1.0</h2>
-        <p>Bu ilk paket, temiz GitHub yapisiyla baslamak icin ozel olarak sade tutuldu. Dosya yapisinda sadece gerekli ogeler var: kokte sayfalar, assets klasoru ve mods klasorunde sadece <strong>radio.zip</strong>.</p>
-        <div class="actions">
-          <a class="btn btn-primary js-download-link" href="mods/radio.zip" download="radio.zip" data-download-slug="radio">ZIP Indir</a>
-          <a class="btn btn-secondary" href="index.html">Ana Sayfaya Don</a>
+        <p class="search-hint"><span data-search-count>Sonuç: 0</span> • Yazınca otomatik filtrelenir</p>
+        <div class="mods-grid">
+                    <article class="card reveal" data-search="radio v1.6 v16 1.6 16">
+            <img src="assets/v1-6-gosteri-resmi-1.jpg?v=7" alt="Radio V1.6">
+            <div class="card-content">
+              <h3>Radio V1.6</h3>
+              <p>En güncel sürüm: yeni görseller ve geliştirilmiş deneyim.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.6.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-6/index.html?v=7">İndir</a>
+          </article><article class="card reveal" data-search="radio v1.5 v15 1.5 15">
+            <img src="assets/v1-5-gosteri-resmi-1.jpg?v=6" alt="Radio V1.5">
+            <div class="card-content">
+              <h3>Radio V1.5</h3>
+              <p>En güncel sürüm: yeni görseller ve geliştirilmiş deneyim.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.5.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-5/index.html?v=6">İndir</a>
+          </article>
+          <article class="card reveal" data-search="radio v1.4 v14 1.4 14">
+            <img src="assets/v1-4-gosteri-resmi-1.jpg?v=6" alt="Radio V1.4">
+            <div class="card-content">
+              <h3>Radio V1.4</h3>
+              <p>En güncel sürüm: yeni görseller ve geliştirilmiş deneyim.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.4.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-4/index.html?v=6">İndir</a>
+          </article>
+          <article class="card reveal" data-search="radio v1.3 v13 1.3 13">
+            <img src="assets/v1-3-gosteri-resmi-1.jpg?v=6" alt="Radio V1.3">
+            <div class="card-content">
+              <h3>Radio V1.3</h3>
+              <p>En güncel sürüm: yeni görseller ve geliştirilmiş deneyim.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.3.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-3/index.html?v=6">İndir</a>
+          </article>
+          <article class="card reveal" data-search="radio v1.2 v12 1.2 12">
+            <img src="assets/v1-2-gosteri-resmi-1.jpg?v=6" alt="Radio V1.2">
+            <div class="card-content">
+              <h3>Radio V1.2</h3>
+              <p>En güncel sürüm: yeni görseller ve iyileştirilmiş deneyim.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.2.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-2/index.html?v=6">İndir</a>
+          </article>
+          <article class="card reveal" data-search="radio v1.1 v11 1.1 11">
+            <img src="assets/v1-1-gosteri-resmi-1.jpg?v=6" alt="Radio V1.1">
+            <div class="card-content">
+              <h3>Radio V1.1</h3>
+              <p>Geliştirilmiş sürüm: daha temiz arayüz ve optimize edilmiş kullanım.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio V1.1.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio-v1-1/index.html?v=6">İndir</a>
+          </article>
+          <article class="card reveal" data-search="radio v1.0 v10 1.0 10">
+            <img src="assets/gosteri-resmi-1.jpg?v=6" alt="Radio V1.0">
+            <div class="card-content">
+              <h3>Radio V1.0</h3>
+              <p>Stabil sürüm: pratik kurulum ve hızlı kullanım.</p>
+              <div class="card-meta">
+                <span>Dosyalar: radio.zip</span>
+                <span>Güncelleme: 12 Mart 2026</span>
+              </div>
+            </div>
+            <a class="download" href="mods/radio/index.html?v=6">İndir</a>
+          </article>
         </div>
-      </div>
-    </article>
+      </section>
+    </main>
 
-    <div id="empty-state" class="empty">Aramana uygun mod bulunamadi.</div>
-  </main>
+    <footer>
+      © 2026 FiveMods - Modern mod koleksiyonu ve hızlı destek
+    </footer>
+  </div>
 
-  <footer class="container footer">
-    FiveMods | Ilk yayin paketi sadece Radio V1.0 ile acildi.
-  </footer>
-
-  <script src="assets/fivemods-counter-config.js"></script>
-  <script src="assets/download-counter.js"></script>
   <script>
-    (function () {
-      var input = document.getElementById('search-input');
-      var card = document.getElementById('radio-card');
-      var empty = document.getElementById('empty-state');
-      var result = document.getElementById('result-count');
-      var haystack = (card.getAttribute('data-search') || '').toLowerCase();
+  (function () {
+    const inputs = document.querySelectorAll('[data-mod-search]');
+    const cards = Array.from(document.querySelectorAll('.mods-grid .card'));
+    const countEls = document.querySelectorAll('[data-search-count]');
+    if (!inputs.length || !cards.length) return;
 
-      function filter() {
-        var query = (input.value || '').trim().toLowerCase();
-        var visible = !query || haystack.indexOf(query) !== -1 || query.split(/\s+/).every(function (part) { return !part || haystack.indexOf(part) !== -1; });
-        card.style.display = visible ? 'grid' : 'none';
-        empty.style.display = visible ? 'none' : 'block';
-        result.textContent = 'Sonuc: ' + (visible ? '1' : '0');
+    const trMap = {
+      'ç': 'c',
+      'ğ': 'g',
+      'ı': 'i',
+      'ö': 'o',
+      'ş': 's',
+      'ü': 'u'
+    };
+
+    const normalize = (str) => (str || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    const normalizeTr = (str) => normalize(str).replace(/[çğıöşü]/g, (ch) => trMap[ch] || ch);
+    const clean = (str) => normalizeTr(str)
+      .replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const compact = (str) => normalizeTr(str).replace(/[^a-z0-9]/g, '');
+
+    const data = cards.map((card, index) => {
+      const titleEl = card.querySelector('h3');
+      const metaEl = card.querySelector('.card-meta');
+      const title = titleEl ? titleEl.textContent : '';
+      const meta = metaEl ? metaEl.textContent : '';
+      const extra = card.dataset.search ? card.dataset.search + ' ' : '';
+      const raw = `${extra} ${title} ${meta}`;
+      return {
+        card,
+        index,
+        title: clean(title),
+        text: clean(raw),
+        compact: compact(raw)
+      };
+    });
+
+    const scoreItem = (item, qClean, qCompact, tokens) => {
+      if (!qClean && !qCompact) return 0;
+      let score = 0;
+
+      if (qCompact && item.compact.includes(qCompact)) score += 80;
+      if (qClean && item.title.startsWith(qClean)) score += 90;
+      if (qClean && item.title.includes(qClean)) score += 70;
+      if (qClean && item.text.includes(qClean)) score += 60;
+
+      let tokenHits = 0;
+      tokens.forEach((token) => {
+        if (!token) return;
+        if (item.title.includes(token) || item.text.includes(token) || item.compact.includes(token)) {
+          tokenHits++;
+        }
+      });
+
+      if (tokens.length && tokenHits === 0) return 0;
+      score += tokenHits * 20;
+
+      if (qClean) {
+        score += Math.max(0, 30 - Math.abs(item.title.length - qClean.length));
       }
 
-      input.addEventListener('input', filter);
-    })();
-  </script>
-</body>
+      return score;
+    };
+
+    const applyFilter = (value) => {
+      const qRaw = value || '';
+      const qClean = clean(qRaw);
+      const qCompact = compact(qRaw);
+
+      if (!qClean && !qCompact) {
+        cards.forEach((card) => {
+          card.style.display = '';
+          card.style.order = '';
+        });
+        if (countEls.length) {
+          countEls.forEach((el) => {
+            el.textContent = 'Sonuç: ' + cards.length;
+          });
+        }
+        return;
+      }
+
+      const tokens = qClean.split(' ').filter(Boolean);
+      if (qCompact) tokens.push(qCompact);
+
+      const results = data
+        .map((item) => ({ item, score: scoreItem(item, qClean, qCompact, tokens) }))
+        .filter((row) => row.score > 0)
+        .sort((a, b) => b.score - a.score || a.item.index - b.item.index);
+
+      cards.forEach((card) => {
+        card.style.display = 'none';
+        card.style.order = '';
+      });
+
+      results.forEach((row, idx) => {
+        row.item.card.style.display = '';
+        row.item.card.style.order = String(idx);
+      });
+
+      if (countEls.length) {
+        countEls.forEach((el) => {
+          el.textContent = 'Sonuç: ' + results.length;
+        });
+      }
+    };
+
+    window.__fmFilter = applyFilter;
+    inputs.forEach((input) => {
+      const handler = () => applyFilter(input.value);
+      input.addEventListener('input', handler);
+      input.addEventListener('keyup', handler);
+      input.addEventListener('change', handler);
+      input.addEventListener('search', handler);
+    });
+
+    document.querySelectorAll('.search button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const wrapper = btn.closest('.search');
+        if (!wrapper) return;
+        const input = wrapper.querySelector('[data-mod-search]');
+        if (input) applyFilter(input.value);
+      });
+    });
+
+    applyFilter('');
+  })();
+</script>  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
