@@ -78,6 +78,13 @@
         continue;
       }
 
+      const radioJoined = current.match(/^(radio|radyo|rdo)(\d{2})$/);
+      if (radioJoined) {
+        tokens.push(radioJoined[1]);
+        tokens.push(`v${radioJoined[2][0]}.${radioJoined[2][1]}`);
+        continue;
+      }
+
       tokens.push(current);
     }
 
@@ -109,6 +116,11 @@
     }
 
     return unique(Array.from(variants).map(clean).concat(Array.from(variants).map(compact)));
+  };
+
+  const versionLikeToken = (token) => {
+    const value = clean(token);
+    return /^v?\d+(?:\s*[.\- ]\s*\d+)?$/.test(value) || /^v?\d{2}$/.test(compact(token));
   };
 
   const isSubsequence = (needle, haystack) => {
@@ -235,6 +247,13 @@
 
     const words = unique(splitWords(raw).concat(extraAliases));
     const compactWords = unique(words.map(compact));
+    const versionVariants = unique(
+      words
+        .filter(versionLikeToken)
+        .reduce(function (all, token) {
+          return all.concat(expandVersionToken(token));
+        }, [])
+    );
 
     return {
       card: card,
@@ -243,7 +262,8 @@
       text: clean(raw),
       compact: compact(raw),
       words: words,
-      compactWords: compactWords
+      compactWords: compactWords,
+      versionVariants: versionVariants
     };
   });
 
@@ -269,16 +289,38 @@
   };
 
   const buildQuery = (value) => {
+    const tokens = buildQueryTokens(value);
+    const strictVersionToken = tokens.filter(versionLikeToken);
+    const nonVersionTokens = tokens.filter(function (token) {
+      return !versionLikeToken(token) && !["radio", "radyo", "rdo"].includes(clean(token));
+    });
+
     return {
       clean: clean(value),
       compact: compact(value),
-      tokens: buildQueryTokens(value)
+      tokens: tokens,
+      strictVersions: unique(
+        strictVersionToken.reduce(function (all, token) {
+          return all.concat(expandVersionToken(token));
+        }, [])
+      ),
+      strictVersionMode: strictVersionToken.length > 0 && nonVersionTokens.length === 0
     };
   };
 
   const scoreItem = (item, query) => {
     if (!query.clean && !query.compact) {
       return 0;
+    }
+
+    if (query.strictVersionMode) {
+      const exactVersionMatch = query.strictVersions.some(function (variant) {
+        return item.versionVariants.includes(variant);
+      });
+
+      if (!exactVersionMatch) {
+        return 0;
+      }
     }
 
     let score = 0;
