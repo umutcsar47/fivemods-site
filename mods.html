@@ -550,10 +550,10 @@
         <h2>Modlar</h2>
         <p>Tüm modlar burada listelenir. İndirme bağlantıları mod sayfasına gider.</p>
         <div class="search" role="search">
-          <input type="text" placeholder="Mod ara... (1.4, v1.5, radio)" aria-label="Mod arama" data-mod-search oninput="window.__fmFilter && window.__fmFilter(this.value)">
+          <input type="text" placeholder="Akilli mod ara... (rad, rdo, v16, 1 6)" aria-label="Mod arama" data-mod-search>
           <button type="button">Ara</button>
         </div>
-        <p class="search-hint"><span data-search-count>Sonuç: 0</span> • Yazınca otomatik filtrelenir</p>
+        <p class="search-hint"><span data-search-count>Sonuç: 0</span> • Akilli arama acik: rad, rdo, v16, 1 6</p>
         <div class="mods-grid">
                     <article class="card reveal" data-search="radio v1.6 v16 1.6 16">
             <img src="assets/v1-6-gosteri-resmi-1.jpg?v=7" alt="Radio V1.6">
@@ -647,142 +647,8 @@
     </footer>
   </div>
 
-  <script>
-  (function () {
-    const inputs = document.querySelectorAll('[data-mod-search]');
-    const cards = Array.from(document.querySelectorAll('.mods-grid .card'));
-    const countEls = document.querySelectorAll('[data-search-count]');
-    if (!inputs.length || !cards.length) return;
-
-    const trMap = {
-      'ç': 'c',
-      'ğ': 'g',
-      'ı': 'i',
-      'ö': 'o',
-      'ş': 's',
-      'ü': 'u'
-    };
-
-    const normalize = (str) => (str || '')
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-
-    const normalizeTr = (str) => normalize(str).replace(/[çğıöşü]/g, (ch) => trMap[ch] || ch);
-    const clean = (str) => normalizeTr(str)
-      .replace(/[^a-z0-9]+/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-    const compact = (str) => normalizeTr(str).replace(/[^a-z0-9]/g, '');
-
-    const data = cards.map((card, index) => {
-      const titleEl = card.querySelector('h3');
-      const metaEl = card.querySelector('.card-meta');
-      const title = titleEl ? titleEl.textContent : '';
-      const meta = metaEl ? metaEl.textContent : '';
-      const extra = card.dataset.search ? card.dataset.search + ' ' : '';
-      const raw = `${extra} ${title} ${meta}`;
-      return {
-        card,
-        index,
-        title: clean(title),
-        text: clean(raw),
-        compact: compact(raw)
-      };
-    });
-
-    const scoreItem = (item, qClean, qCompact, tokens) => {
-      if (!qClean && !qCompact) return 0;
-      let score = 0;
-
-      if (qCompact && item.compact.includes(qCompact)) score += 80;
-      if (qClean && item.title.startsWith(qClean)) score += 90;
-      if (qClean && item.title.includes(qClean)) score += 70;
-      if (qClean && item.text.includes(qClean)) score += 60;
-
-      let tokenHits = 0;
-      tokens.forEach((token) => {
-        if (!token) return;
-        if (item.title.includes(token) || item.text.includes(token) || item.compact.includes(token)) {
-          tokenHits++;
-        }
-      });
-
-      if (tokens.length && tokenHits === 0) return 0;
-      score += tokenHits * 20;
-
-      if (qClean) {
-        score += Math.max(0, 30 - Math.abs(item.title.length - qClean.length));
-      }
-
-      return score;
-    };
-
-    const applyFilter = (value) => {
-      const qRaw = value || '';
-      const qClean = clean(qRaw);
-      const qCompact = compact(qRaw);
-
-      if (!qClean && !qCompact) {
-        cards.forEach((card) => {
-          card.style.display = '';
-          card.style.order = '';
-        });
-        if (countEls.length) {
-          countEls.forEach((el) => {
-            el.textContent = 'Sonuç: ' + cards.length;
-          });
-        }
-        return;
-      }
-
-      const tokens = qClean.split(' ').filter(Boolean);
-      if (qCompact) tokens.push(qCompact);
-
-      const results = data
-        .map((item) => ({ item, score: scoreItem(item, qClean, qCompact, tokens) }))
-        .filter((row) => row.score > 0)
-        .sort((a, b) => b.score - a.score || a.item.index - b.item.index);
-
-      cards.forEach((card) => {
-        card.style.display = 'none';
-        card.style.order = '';
-      });
-
-      results.forEach((row, idx) => {
-        row.item.card.style.display = '';
-        row.item.card.style.order = String(idx);
-      });
-
-      if (countEls.length) {
-        countEls.forEach((el) => {
-          el.textContent = 'Sonuç: ' + results.length;
-        });
-      }
-    };
-
-    window.__fmFilter = applyFilter;
-    inputs.forEach((input) => {
-      const handler = () => applyFilter(input.value);
-      input.addEventListener('input', handler);
-      input.addEventListener('keyup', handler);
-      input.addEventListener('change', handler);
-      input.addEventListener('search', handler);
-    });
-
-    document.querySelectorAll('.search button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const wrapper = btn.closest('.search');
-        if (!wrapper) return;
-        const input = wrapper.querySelector('[data-mod-search]');
-        if (input) applyFilter(input.value);
-      });
-    });
-
-    applyFilter('');
-  })();
-</script>  </body>
+  <script src="assets/mod-search.js"></script>
+</body>
 </html>
 
 
