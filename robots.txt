@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://umutcsar47.github.io/fivemods-site/sitemap.xml
