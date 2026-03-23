@@ -11,6 +11,20 @@
   --shadow: 0 24px 58px rgba(1, 10, 24, 0.68);
 }
 
+html {
+  color-scheme: dark;
+}
+
+body,
+input,
+button,
+textarea,
+select {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background:
     radial-gradient(880px 500px at 12% -8%, rgba(56, 189, 248, 0.34) 0%, transparent 58%),
@@ -75,6 +89,22 @@ footer {
   color: transparent;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.mod-info h1,
+.card h2,
+.card-content h3,
+.section-head h2,
+.discord-card h2,
+.summary-card strong {
+  color: #f7fbff;
+  text-shadow: 0 2px 20px rgba(2, 12, 27, 0.2);
+}
+
 .nav a:hover,
 .nav a:focus-visible {
   color: var(--ink);
@@ -82,6 +112,7 @@ footer {
 }
 
 .nav a {
+  color: #c9dff7;
   border: 1px solid transparent;
   transition:
     color 0.22s ease,
@@ -94,6 +125,7 @@ footer {
 .nav a:not(.cta) {
   background: rgba(7, 24, 46, 0.54);
   border-color: rgba(125, 211, 252, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .nav a:not(.cta):hover,
@@ -122,6 +154,7 @@ footer {
   box-shadow: 0 18px 38px rgba(37, 99, 235, 0.34);
   position: relative;
   overflow: hidden;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .nav .cta::before,
@@ -213,12 +246,43 @@ footer {
   color: #b7d0ea;
 }
 
+p,
+li,
+.hero p,
+.section p,
+.mod-info p,
+.lead,
+.helper,
+.note,
+.hint,
+.about-copy p,
+.card-content p,
+.card-meta span,
+.panel-item span,
+.file .label,
+.file span,
+.search-hint,
+.media-info span,
+.discord-card p,
+.summary-card span,
+footer {
+  color: #d8e9fb !important;
+}
+
+.search-hint,
+.note,
+.hint,
+.helper {
+  font-weight: 500;
+}
+
 .search {
   gap: 12px;
   align-items: stretch;
 }
 
 .search input {
+  background: rgba(6, 20, 40, 0.96);
   border-radius: 18px;
   border: 1px solid rgba(125, 211, 252, 0.22);
   box-shadow:
