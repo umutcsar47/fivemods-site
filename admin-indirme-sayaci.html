@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -263,12 +263,12 @@
     <section class="hero">
       <article class="panel hero-copy">
         <span class="eyebrow">FiveMods Admin</span>
-        <h1>GerÃƒÆ’Ã‚Â§ek Ãƒâ€Ã‚Â°ndirme SayacÃƒâ€Ã‚Â±</h1>
-        <p class="lead">Bu ekran herkese aÃƒÆ’Ã‚Â§Ãƒâ€Ã‚Â±k bir liste deÃƒâ€Ã…Â¸ildir. SayaÃƒÆ’Ã‚Â§ verisi sadece gizli admin anahtarÃƒâ€Ã‚Â±nÃƒâ€Ã‚Â± giren tarafta gÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼nÃƒÆ’Ã‚Â¼r. Biri siteden ZIP indirdiÃƒâ€Ã…Â¸inde sayÃƒâ€Ã‚Â± burada artar.</p>
+        <h1>Gerçek İndirme Sayacı</h1>
+        <p class="lead">Bu ekran herkese açık bir liste değildir. Sayaç verisi sadece gizli admin anahtarını giren tarafta görünür. Biri siteden ZIP indirdiğinde sayı burada artar.</p>
 
         <div class="summary-grid">
           <div class="summary-card">
-            <span>Toplam Ãƒâ€Ã‚Â°ndirme</span>
+            <span>Toplam İndirme</span>
             <strong id="total-downloads">0</strong>
           </div>
           <div class="summary-card">
@@ -276,36 +276,36 @@
             <strong id="tracked-mods">0</strong>
           </div>
           <div class="summary-card">
-            <span>Son GÃƒÆ’Ã‚Â¼ncelleme</span>
-            <strong id="last-updated">HenÃƒÆ’Ã‚Â¼z yok</strong>
+            <span>Son Güncelleme</span>
+            <strong id="last-updated">Henüz yok</strong>
           </div>
         </div>
       </article>
 
       <aside class="panel admin-box">
-        <h2>Admin EriÃƒâ€¦Ã…Â¸imi</h2>
+        <h2>Admin Erişimi</h2>
         <div class="field-group">
-          <label for="admin-secret">Gizli admin anahtarÃƒâ€Ã‚Â±</label>
-          <input id="admin-secret" type="password" placeholder="Cloudflare'da belirlediÃƒâ€Ã…Â¸in ADMIN_SECRET">
+          <label for="admin-secret">Gizli admin anahtarı</label>
+          <input id="admin-secret" type="password" placeholder="Cloudflare'da belirlediğin ADMIN_SECRET">
         </div>
 
         <div class="button-row">
-          <button id="save-secret" class="primary-btn" type="button">AnahtarÃƒâ€Ã‚Â± Kaydet</button>
-          <button id="refresh-stats" class="ghost-btn" type="button">SayaÃƒÆ’Ã‚Â§larÃƒâ€Ã‚Â± Yenile</button>
+          <button id="save-secret" class="primary-btn" type="button">Anahtarı Kaydet</button>
+          <button id="refresh-stats" class="ghost-btn" type="button">Sayaçları Yenile</button>
         </div>
 
         <div class="field-group">
           <label>Worker adresi</label>
-          <div id="worker-endpoint" class="endpoint-box">HenÃƒÆ’Ã‚Â¼z ayarlanmadÃƒâ€Ã‚Â±</div>
+          <div id="worker-endpoint" class="endpoint-box">Henüz ayarlanmadı</div>
         </div>
 
-        <div id="status-box" class="status-box">Admin anahtarÃƒâ€Ã‚Â±nÃƒâ€Ã‚Â± kaydettikten sonra veriler burada yÃƒÆ’Ã‚Â¼klenir.</div>
-        <p id="helper-text" class="helper">Bu sayfayÃƒâ€Ã‚Â± navigasyona eklemedim. Sadece sen doÃƒâ€Ã…Â¸rudan aÃƒÆ’Ã‚Â§arsan gÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼nÃƒÆ’Ã‚Â¼r.</p>
+        <div id="status-box" class="status-box">Admin anahtarını kaydettikten sonra veriler burada yüklenir.</div>
+        <p id="helper-text" class="helper">Bu sayfayı navigasyona eklemedim. Sadece sen doğrudan açarsan görünür.</p>
       </aside>
     </section>
 
     <section class="panel stats-area">
-      <h2>Mod BazlÃƒâ€Ã‚Â± SayaÃƒÆ’Ã‚Â§lar</h2>
+      <h2>Mod Bazlı Sayaçlar</h2>
       <div id="stats-cards" class="stats-cards"></div>
     </section>
   </main>
