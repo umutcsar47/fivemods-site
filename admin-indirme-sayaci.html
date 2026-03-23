@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -256,19 +256,19 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="assets/site-visuals.css?v=20260323-1">
+  <link rel="stylesheet" href="assets/site-visuals.css?v=20260323-2">
 </head>
 <body>
   <main class="shell">
     <section class="hero">
       <article class="panel hero-copy">
         <span class="eyebrow">FiveMods Admin</span>
-        <h1>GerÃ§ek Ä°ndirme SayacÄ±</h1>
-        <p class="lead">Bu ekran herkese aÃ§Ä±k bir liste deÄŸildir. SayaÃ§ verisi sadece gizli admin anahtarÄ±nÄ± giren tarafta gÃ¶rÃ¼nÃ¼r. Biri siteden ZIP indirdiÄŸinde sayÄ± burada artar.</p>
+        <h1>GerÃƒÆ’Ã‚Â§ek Ãƒâ€Ã‚Â°ndirme SayacÃƒâ€Ã‚Â±</h1>
+        <p class="lead">Bu ekran herkese aÃƒÆ’Ã‚Â§Ãƒâ€Ã‚Â±k bir liste deÃƒâ€Ã…Â¸ildir. SayaÃƒÆ’Ã‚Â§ verisi sadece gizli admin anahtarÃƒâ€Ã‚Â±nÃƒâ€Ã‚Â± giren tarafta gÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼nÃƒÆ’Ã‚Â¼r. Biri siteden ZIP indirdiÃƒâ€Ã…Â¸inde sayÃƒâ€Ã‚Â± burada artar.</p>
 
         <div class="summary-grid">
           <div class="summary-card">
-            <span>Toplam Ä°ndirme</span>
+            <span>Toplam Ãƒâ€Ã‚Â°ndirme</span>
             <strong id="total-downloads">0</strong>
           </div>
           <div class="summary-card">
@@ -276,42 +276,44 @@
             <strong id="tracked-mods">0</strong>
           </div>
           <div class="summary-card">
-            <span>Son GÃ¼ncelleme</span>
-            <strong id="last-updated">HenÃ¼z yok</strong>
+            <span>Son GÃƒÆ’Ã‚Â¼ncelleme</span>
+            <strong id="last-updated">HenÃƒÆ’Ã‚Â¼z yok</strong>
           </div>
         </div>
       </article>
 
       <aside class="panel admin-box">
-        <h2>Admin EriÅŸimi</h2>
+        <h2>Admin EriÃƒâ€¦Ã…Â¸imi</h2>
         <div class="field-group">
-          <label for="admin-secret">Gizli admin anahtarÄ±</label>
-          <input id="admin-secret" type="password" placeholder="Cloudflare'da belirlediÄŸin ADMIN_SECRET">
+          <label for="admin-secret">Gizli admin anahtarÃƒâ€Ã‚Â±</label>
+          <input id="admin-secret" type="password" placeholder="Cloudflare'da belirlediÃƒâ€Ã…Â¸in ADMIN_SECRET">
         </div>
 
         <div class="button-row">
-          <button id="save-secret" class="primary-btn" type="button">AnahtarÄ± Kaydet</button>
-          <button id="refresh-stats" class="ghost-btn" type="button">SayaÃ§larÄ± Yenile</button>
+          <button id="save-secret" class="primary-btn" type="button">AnahtarÃƒâ€Ã‚Â± Kaydet</button>
+          <button id="refresh-stats" class="ghost-btn" type="button">SayaÃƒÆ’Ã‚Â§larÃƒâ€Ã‚Â± Yenile</button>
         </div>
 
         <div class="field-group">
           <label>Worker adresi</label>
-          <div id="worker-endpoint" class="endpoint-box">HenÃ¼z ayarlanmadÄ±</div>
+          <div id="worker-endpoint" class="endpoint-box">HenÃƒÆ’Ã‚Â¼z ayarlanmadÃƒâ€Ã‚Â±</div>
         </div>
 
-        <div id="status-box" class="status-box">Admin anahtarÄ±nÄ± kaydettikten sonra veriler burada yÃ¼klenir.</div>
-        <p id="helper-text" class="helper">Bu sayfayÄ± navigasyona eklemedim. Sadece sen doÄŸrudan aÃ§arsan gÃ¶rÃ¼nÃ¼r.</p>
+        <div id="status-box" class="status-box">Admin anahtarÃƒâ€Ã‚Â±nÃƒâ€Ã‚Â± kaydettikten sonra veriler burada yÃƒÆ’Ã‚Â¼klenir.</div>
+        <p id="helper-text" class="helper">Bu sayfayÃƒâ€Ã‚Â± navigasyona eklemedim. Sadece sen doÃƒâ€Ã…Â¸rudan aÃƒÆ’Ã‚Â§arsan gÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼nÃƒÆ’Ã‚Â¼r.</p>
       </aside>
     </section>
 
     <section class="panel stats-area">
-      <h2>Mod BazlÄ± SayaÃ§lar</h2>
+      <h2>Mod BazlÃƒâ€Ã‚Â± SayaÃƒÆ’Ã‚Â§lar</h2>
       <div id="stats-cards" class="stats-cards"></div>
     </section>
   </main>
 
   <script src="assets/fivemods-counter-config.js"></script>
   <script src="assets/admin-counter.js"></script>
-  <script src="assets/site-intro.js?v=20260323-1"></script>
+  <script src="assets/site-intro.js?v=20260323-2"></script>
 </body>
 </html>
+
+

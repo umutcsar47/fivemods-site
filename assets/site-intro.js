@@ -11,13 +11,17 @@
     return;
   }
 
-  const sessionKey = "fivemods-intro-v1";
-  let shouldShow = true;
+  const sessionKey = "fivemods-intro-v2";
+  const path = (window.location.pathname || "").toLowerCase();
+  const isHomePage = path.endsWith("/fivemods-site/") || path.endsWith("/fivemods-site/index.html") || path === "/" || path.endsWith("/index.html");
+  let shouldShow = isHomePage;
 
-  try {
-    shouldShow = !window.sessionStorage.getItem(sessionKey);
-  } catch (error) {
-    shouldShow = true;
+  if (!isHomePage) {
+    try {
+      shouldShow = !window.sessionStorage.getItem(sessionKey);
+    } catch (error) {
+      shouldShow = true;
+    }
   }
 
   if (!shouldShow) {
