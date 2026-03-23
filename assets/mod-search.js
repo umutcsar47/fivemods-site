@@ -234,11 +234,21 @@
 
   const data = cards.map(function (card, index) {
     const titleEl = card.querySelector("h3");
+    const descEl = card.querySelector("p");
     const metaEl = card.querySelector(".card-meta");
+    const metaSpans = Array.from(card.querySelectorAll(".card-meta span"));
     const title = titleEl ? titleEl.textContent : "";
-    const meta = metaEl ? metaEl.textContent : "";
+    const description = descEl ? descEl.textContent : "";
+    const fileMeta = metaSpans
+      .map(function (span) {
+        return span.textContent || "";
+      })
+      .filter(function (text) {
+        return clean(text).indexOf("guncelleme") === -1;
+      })
+      .join(" ");
     const extra = card.dataset.search || "";
-    const raw = [extra, title, meta, "fivem fivemods mod modlar paket script resource"].join(" ");
+    const raw = [extra, title, description, fileMeta, "fivem fivemods mod modlar paket script resource"].join(" ");
 
     const extraAliases = [];
     if (clean(raw).includes("radio")) {
