@@ -520,6 +520,64 @@ body.fm-intro-active > footer {
   color: #8fb4da;
 }
 
+.pwa-install {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 22px;
+  border: 1px solid rgba(208, 243, 255, 0.7);
+  border-radius: 999px;
+  background: linear-gradient(120deg, #ecfeff 0%, #7dd3fc 35%, #38bdf8 65%, #2563eb 100%);
+  color: #03101d;
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow: 0 20px 44px rgba(37, 99, 235, 0.38);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+}
+
+.pwa-install:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 24px 54px rgba(37, 99, 235, 0.44);
+}
+
+.pwa-install[hidden] {
+  display: none;
+}
+
+.pwa-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 92px;
+  z-index: 9998;
+  width: min(92vw, 420px);
+  padding: 14px 16px;
+  border-radius: 18px;
+  transform: translate(-50%, 18px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(6, 20, 40, 0.94);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  box-shadow: 0 22px 44px rgba(2, 12, 27, 0.34);
+  color: #e4f1ff;
+  font-size: 14px;
+  line-height: 1.55;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+  backdrop-filter: blur(18px);
+}
+
+.pwa-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 @keyframes fmIntroPulse {
   0%,
   100% {
@@ -983,6 +1041,17 @@ footer {
 
   .card-meta span {
     width: 100%;
+  }
+
+  .pwa-install {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    width: auto;
+  }
+
+  .pwa-toast {
+    bottom: 82px;
   }
 }
 
