@@ -404,6 +404,14 @@ body.fm-intro-lock {
   overflow: hidden;
 }
 
+html.fm-intro-pending body > header,
+html.fm-intro-pending body > main,
+html.fm-intro-pending body > footer,
+html.fm-intro-pending body > .page {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 body.fm-intro-active .page,
 body.fm-intro-active > header,
 body.fm-intro-active > main,

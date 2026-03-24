@@ -1,6 +1,12 @@
 (function () {
+  const root = document.documentElement;
   const body = document.body;
+  const clearPending = function () {
+    root.classList.remove("fm-intro-pending");
+  };
+
   if (!body) {
+    clearPending();
     return;
   }
 
@@ -8,28 +14,36 @@
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reducedMotion) {
+    clearPending();
     return;
   }
 
-  const sessionKey = "fivemods-intro-v2";
-  const path = (window.location.pathname || "").toLowerCase();
-  const isHomePage = path.endsWith("/fivemods-site/") || path.endsWith("/fivemods-site/index.html") || path === "/" || path.endsWith("/index.html");
-  let shouldShow = isHomePage;
+  const sessionKey = "fivemods-intro-v3";
+  let shouldShow = true;
 
-  if (!isHomePage) {
-    try {
-      shouldShow = !window.sessionStorage.getItem(sessionKey);
-    } catch (error) {
-      shouldShow = true;
-    }
+  try {
+    shouldShow = !window.sessionStorage.getItem(sessionKey);
+  } catch (error) {
+    shouldShow = true;
   }
 
   if (!shouldShow) {
+    clearPending();
     return;
   }
 
+  try {
+    window.sessionStorage.setItem(sessionKey, "1");
+  } catch (error) {
+  }
+
   const logo = document.querySelector(".logo-img");
-  const logoSrc = logo ? new URL(logo.getAttribute("src"), window.location.href).href : "";
+  const metaImage = document.querySelector('meta[property="og:image"]');
+  const logoSrc = logo
+    ? new URL(logo.getAttribute("src"), window.location.href).href
+    : metaImage
+      ? metaImage.getAttribute("content")
+      : "";
 
   const intro = document.createElement("div");
   intro.id = "fm-intro";
@@ -55,13 +69,9 @@
 
     closed = true;
     intro.classList.add("is-hidden");
+    clearPending();
     body.classList.remove("fm-intro-active", "fm-intro-lock");
     document.documentElement.classList.remove("fm-intro-lock");
-
-    try {
-      window.sessionStorage.setItem(sessionKey, "1");
-    } catch (error) {
-    }
 
     window.setTimeout(function () {
       if (intro.parentNode) {
@@ -73,6 +83,7 @@
   body.classList.add("fm-intro-active", "fm-intro-lock");
   document.documentElement.classList.add("fm-intro-lock");
   body.appendChild(intro);
+  clearPending();
 
   window.requestAnimationFrame(function () {
     intro.classList.add("is-visible");
@@ -80,15 +91,15 @@
 
   const finishWhenReady = function () {
     const elapsed = Date.now() - started;
-    const remaining = Math.max(1200 - elapsed, 0);
+    const remaining = Math.max(820 - elapsed, 0);
     window.setTimeout(finish, remaining);
   };
 
-  if (document.readyState === "complete") {
+  if (document.readyState === "complete" || document.readyState === "interactive") {
     finishWhenReady();
   } else {
-    window.addEventListener("load", finishWhenReady, { once: true });
+    document.addEventListener("DOMContentLoaded", finishWhenReady, { once: true });
   }
 
-  window.setTimeout(finish, 2400);
+  window.setTimeout(finish, 1450);
 })();
