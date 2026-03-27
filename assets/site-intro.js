@@ -22,6 +22,7 @@
   const logo = document.querySelector(".logo-img");
   const metaImage = document.querySelector('meta[property="og:image"]');
   let logoSrc = "";
+  const aboutHref = new URL("hakkinda.html?v=20260327-opening-2", window.location.href).href;
 
   try {
     if (logo && logo.getAttribute("src")) {
@@ -46,7 +47,7 @@
     '  <div class="fm-enter-buttons">',
     '    <button class="fm-enter-btn is-primary" type="button" data-fm-enter>ENTER</button>',
     '    <a class="fm-enter-btn" href="https://discord.com/channels/1480897873682895064" target="_blank" rel="noopener noreferrer">DISCORD</a>',
-    '    <a class="fm-enter-btn" href="hakkinda.html?v=20260327-opening" data-fm-about>HAKKINDA</a>',
+    '    <a class="fm-enter-btn" href="' + aboutHref + '">HAKKINDA</a>',
     "  </div>",
     "</div>",
     '<div class="fm-enter-loading" aria-live="polite">',
@@ -58,13 +59,11 @@
   let closed = false;
   let leaving = false;
   let rafId = 0;
-  let fallbackTimer = 0;
   let finishTimer = 0;
 
   const canvas = intro.querySelector(".fm-intro-canvas");
   const light = intro.querySelector(".fm-intro-light");
   const enterButton = intro.querySelector("[data-fm-enter]");
-  const aboutLink = intro.querySelector("[data-fm-about]");
 
   const listeners = [];
   const addListener = function (target, eventName, handler, options) {
@@ -86,10 +85,6 @@
     if (rafId) {
       window.cancelAnimationFrame(rafId);
       rafId = 0;
-    }
-    if (fallbackTimer) {
-      window.clearTimeout(fallbackTimer);
-      fallbackTimer = 0;
     }
     if (finishTimer) {
       window.clearTimeout(finishTimer);
@@ -129,37 +124,6 @@
     finishTimer = window.setTimeout(finish, 1380);
   };
 
-  const animateToAbout = function (event) {
-    if (!aboutLink) {
-      return;
-    }
-
-    event.preventDefault();
-    const href = aboutLink.getAttribute("href");
-
-    if (!href) {
-      return;
-    }
-
-    if (leaving || closed) {
-      window.location.href = href;
-      return;
-    }
-
-    leaving = true;
-    intro.classList.add("is-exit");
-    window.setTimeout(function () {
-      window.location.href = href;
-    }, 360);
-  };
-
-  const onKeyDown = function (event) {
-    if (event.key === "Enter" || event.key === " " || event.key === "Escape") {
-      event.preventDefault();
-      startLoading();
-    }
-  };
-
   body.classList.add("fm-intro-active", "fm-intro-lock");
   root.classList.add("fm-intro-lock");
   body.appendChild(intro);
@@ -172,12 +136,6 @@
   if (enterButton) {
     addListener(enterButton, "click", startLoading);
   }
-
-  if (aboutLink) {
-    addListener(aboutLink, "click", animateToAbout);
-  }
-
-  addListener(window, "keydown", onKeyDown);
 
   const updateLight = function (x, y) {
     if (!light) {
@@ -248,5 +206,4 @@
   resetParticles();
   drawParticles();
 
-  fallbackTimer = window.setTimeout(startLoading, 7000);
 })();
