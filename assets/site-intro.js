@@ -11,6 +11,18 @@
     return;
   }
 
+  const pathName = (window.location.pathname || "").toLowerCase();
+  const isHomePage =
+    pathName.endsWith("/") ||
+    pathName.endsWith("/index.html") ||
+    pathName.endsWith("/fivemods-site") ||
+    pathName.endsWith("/fivemods-site/");
+
+  if (!isHomePage) {
+    clearPending();
+    return;
+  }
+
   const reducedMotion = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -64,7 +76,6 @@
   const canvas = intro.querySelector(".fm-intro-canvas");
   const light = intro.querySelector(".fm-intro-light");
   const enterButton = intro.querySelector("[data-fm-enter]");
-  const aboutButton = intro.querySelector("[data-fm-about]");
 
   const listeners = [];
   const addListener = function (target, eventName, handler, options) {
@@ -136,25 +147,6 @@
 
   if (enterButton) {
     addListener(enterButton, "click", startLoading);
-  }
-
-  if (aboutButton) {
-    addListener(aboutButton, "click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      if (closed) {
-        window.location.assign(aboutHref);
-        return;
-      }
-
-      leaving = true;
-      intro.classList.add("is-exit");
-      cleanup();
-      window.setTimeout(function () {
-        window.location.assign(aboutHref);
-      }, 320);
-    });
   }
 
   const updateLight = function (x, y) {

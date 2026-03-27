@@ -762,6 +762,12 @@ body.fm-intro-active > footer {
   max-width: 880px;
 }
 
+.hero-actions .btn,
+.hero-actions .ghost-btn {
+  min-height: 52px;
+  padding: 0 18px;
+}
+
 .search {
   flex: 1 1 640px;
   display: flex;
@@ -880,6 +886,12 @@ body.fm-intro-active > footer {
   margin: 0 0 16px;
 }
 
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .card-meta {
   display: grid;
   gap: 8px;
@@ -901,6 +913,10 @@ body.fm-intro-active > footer {
   width: calc(100% - 24px);
   margin: 0 12px 12px !important;
   min-height: 52px;
+}
+
+.card .download {
+  margin-top: auto !important;
 }
 
 .mod-grid {
