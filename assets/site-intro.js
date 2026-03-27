@@ -47,7 +47,7 @@
     '  <div class="fm-enter-buttons">',
     '    <button class="fm-enter-btn is-primary" type="button" data-fm-enter>ENTER</button>',
     '    <a class="fm-enter-btn" href="https://discord.com/channels/1480897873682895064" target="_blank" rel="noopener noreferrer">DISCORD</a>',
-    '    <a class="fm-enter-btn" href="' + aboutHref + '">HAKKINDA</a>',
+    '    <a class="fm-enter-btn" href="' + aboutHref + '" data-fm-about>HAKKINDA</a>',
     "  </div>",
     "</div>",
     '<div class="fm-enter-loading" aria-live="polite">',
@@ -64,6 +64,7 @@
   const canvas = intro.querySelector(".fm-intro-canvas");
   const light = intro.querySelector(".fm-intro-light");
   const enterButton = intro.querySelector("[data-fm-enter]");
+  const aboutButton = intro.querySelector("[data-fm-about]");
 
   const listeners = [];
   const addListener = function (target, eventName, handler, options) {
@@ -135,6 +136,25 @@
 
   if (enterButton) {
     addListener(enterButton, "click", startLoading);
+  }
+
+  if (aboutButton) {
+    addListener(aboutButton, "click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (closed) {
+        window.location.assign(aboutHref);
+        return;
+      }
+
+      leaving = true;
+      intro.classList.add("is-exit");
+      cleanup();
+      window.setTimeout(function () {
+        window.location.assign(aboutHref);
+      }, 320);
+    });
   }
 
   const updateLight = function (x, y) {
