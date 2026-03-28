@@ -8,15 +8,9 @@
     return;
   }
 
-  if (navigator.userAgent && navigator.userAgent.indexOf("Electron") !== -1) {
-    return;
-  }
-
   const themes = {
-    neon: { label: "Neon", color: "#061325" },
     dark: { label: "Karanlik", color: "#0d1117" },
-    light: { label: "Aydinlik", color: "#eef5ff" },
-    mono: { label: "Siyah-Beyaz", color: "#f5f5f5" }
+    light: { label: "Aydinlik", color: "#eef5ff" }
   };
 
   function getStoredTheme() {
@@ -27,7 +21,7 @@
       }
     } catch (error) {
     }
-    return "neon";
+    return "dark";
   }
 
   function storeTheme(value) {
@@ -38,7 +32,7 @@
   }
 
   function setTheme(value) {
-    const theme = themes[value] ? value : "neon";
+    const theme = themes[value] ? value : "dark";
     root.setAttribute("data-site-theme", theme);
     storeTheme(theme);
 
@@ -92,10 +86,8 @@
     panel.setAttribute("aria-hidden", "true");
     panel.innerHTML = [
       '<div class="fm-theme-title">Tema Secimi</div>',
-      '<button type="button" data-theme="neon">Neon</button>',
       '<button type="button" data-theme="dark">Karanlik</button>',
-      '<button type="button" data-theme="light">Aydinlik</button>',
-      '<button type="button" data-theme="mono">Siyah-Beyaz</button>'
+      '<button type="button" data-theme="light">Aydinlik</button>'
     ].join("");
 
     document.body.appendChild(fab);

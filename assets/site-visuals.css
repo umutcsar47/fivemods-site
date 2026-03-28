@@ -1316,12 +1316,12 @@ footer {
   right: 18px;
   bottom: 18px;
   z-index: 1200;
-  min-width: 96px;
+  min-width: 110px;
   min-height: 46px;
   border: 1px solid rgba(124, 211, 255, 0.36);
   border-radius: 14px;
-  background: linear-gradient(120deg, rgba(6, 17, 36, 0.92), rgba(8, 33, 62, 0.9));
-  color: #d7f4ff;
+  background: linear-gradient(120deg, rgba(5, 14, 31, 0.94), rgba(9, 28, 53, 0.92));
+  color: #d8f4ff;
   font-family: "Chakra Petch", "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -1335,7 +1335,7 @@ footer {
 .fm-theme-fab:hover {
   transform: translateY(-2px);
   border-color: rgba(130, 225, 255, 0.7);
-  box-shadow: 0 0 22px rgba(56, 189, 248, 0.46), 0 16px 34px rgba(2, 12, 28, 0.44);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 16px 34px rgba(2, 12, 28, 0.44);
 }
 
 .fm-theme-panel {
@@ -1347,7 +1347,7 @@ footer {
   padding: 12px;
   border-radius: 16px;
   border: 1px solid rgba(124, 211, 255, 0.28);
-  background: linear-gradient(180deg, rgba(5, 15, 32, 0.95), rgba(2, 8, 22, 0.96));
+  background: linear-gradient(180deg, rgba(5, 15, 32, 0.96), rgba(2, 8, 22, 0.96));
   box-shadow: 0 22px 44px rgba(2, 12, 27, 0.42);
   backdrop-filter: blur(14px);
   display: grid;
@@ -1401,167 +1401,6 @@ footer {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Neon Theme */
-html[data-site-theme="neon"] {
-  color-scheme: dark !important;
-}
-
-html[data-site-theme="neon"] body {
-  color: #e6f4ff !important;
-  background:
-    radial-gradient(980px 560px at 8% -10%, rgba(18, 99, 255, 0.44) 0%, transparent 58%),
-    radial-gradient(860px 500px at 92% 4%, rgba(0, 208, 255, 0.34) 0%, transparent 62%),
-    radial-gradient(760px 460px at 54% 114%, rgba(17, 70, 186, 0.3) 0%, transparent 68%),
-    linear-gradient(180deg, #030915 0%, #050f1f 48%, #020713 100%) !important;
-}
-
-html[data-site-theme="neon"] body::before {
-  opacity: 0.26 !important;
-  background-image:
-    linear-gradient(rgba(88, 186, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(88, 186, 255, 0.08) 1px, transparent 1px) !important;
-}
-
-html[data-site-theme="neon"] body::after {
-  background:
-    radial-gradient(540px 300px at 15% 24%, rgba(113, 208, 255, 0.2) 0%, transparent 72%),
-    radial-gradient(620px 360px at 84% 10%, rgba(46, 127, 255, 0.18) 0%, transparent 76%) !important;
-}
-
-html[data-site-theme="neon"] .site-header {
-  background: rgba(4, 14, 30, 0.88) !important;
-  border-bottom: 1px solid rgba(118, 218, 255, 0.28) !important;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.42) !important;
-}
-
-html[data-site-theme="neon"] .nav {
-  background: rgba(4, 17, 35, 0.72) !important;
-  border-color: rgba(110, 207, 255, 0.28) !important;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22) !important;
-}
-
-html[data-site-theme="neon"] .nav a {
-  color: #cce9ff !important;
-}
-
-html[data-site-theme="neon"] .nav a:not(.cta) {
-  background: rgba(7, 24, 48, 0.84) !important;
-  border-color: rgba(129, 223, 255, 0.16) !important;
-}
-
-html[data-site-theme="neon"] .nav a:not(.cta):hover,
-html[data-site-theme="neon"] .nav a:not(.cta):focus-visible {
-  background: rgba(17, 92, 160, 0.42) !important;
-  border-color: rgba(136, 226, 255, 0.52) !important;
-}
-
-html[data-site-theme="neon"] .logo-mark {
-  background: linear-gradient(180deg, rgba(30, 127, 255, 0.2), rgba(0, 132, 255, 0.12)) !important;
-  border-color: rgba(134, 224, 255, 0.44) !important;
-  box-shadow: 0 16px 36px rgba(18, 74, 184, 0.34) !important;
-}
-
-html[data-site-theme="neon"] .logo-text {
-  background: linear-gradient(90deg, #f3f9ff 0%, #d9f4ff 44%, #7ee6ff 78%, #5c89ff 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-}
-
-html[data-site-theme="neon"] .hero > .reveal,
-html[data-site-theme="neon"] .mod-grid > .mod-info,
-html[data-site-theme="neon"] .side-stack .card,
-html[data-site-theme="neon"] .hero-panel,
-html[data-site-theme="neon"] .panel-item,
-html[data-site-theme="neon"] .cat,
-html[data-site-theme="neon"] .card,
-html[data-site-theme="neon"] .file,
-html[data-site-theme="neon"] .cta-section,
-html[data-site-theme="neon"] .media-card,
-html[data-site-theme="neon"] .search input {
-  background: linear-gradient(180deg, rgba(6, 21, 42, 0.94), rgba(2, 10, 24, 0.96)) !important;
-  border-color: rgba(110, 214, 255, 0.28) !important;
-  box-shadow: 0 20px 38px rgba(2, 12, 27, 0.4) !important;
-}
-
-html[data-site-theme="neon"] h1,
-html[data-site-theme="neon"] h2,
-html[data-site-theme="neon"] h3,
-html[data-site-theme="neon"] h4,
-html[data-site-theme="neon"] h5,
-html[data-site-theme="neon"] h6,
-html[data-site-theme="neon"] .mod-info h1,
-html[data-site-theme="neon"] .card h2,
-html[data-site-theme="neon"] .card-content h3,
-html[data-site-theme="neon"] .section-head h2,
-html[data-site-theme="neon"] .discord-card h2,
-html[data-site-theme="neon"] .summary-card strong {
-  color: #f5fbff !important;
-}
-
-html[data-site-theme="neon"] p,
-html[data-site-theme="neon"] li,
-html[data-site-theme="neon"] .hero p,
-html[data-site-theme="neon"] .section p,
-html[data-site-theme="neon"] .mod-info p,
-html[data-site-theme="neon"] .lead,
-html[data-site-theme="neon"] .helper,
-html[data-site-theme="neon"] .note,
-html[data-site-theme="neon"] .hint,
-html[data-site-theme="neon"] .about-copy p,
-html[data-site-theme="neon"] .card-content p,
-html[data-site-theme="neon"] .card-meta span,
-html[data-site-theme="neon"] .panel-item span,
-html[data-site-theme="neon"] .file .label,
-html[data-site-theme="neon"] .file span,
-html[data-site-theme="neon"] .search-hint,
-html[data-site-theme="neon"] .media-info span,
-html[data-site-theme="neon"] .discord-card p,
-html[data-site-theme="neon"] .summary-card span,
-html[data-site-theme="neon"] footer {
-  color: #cfe5ff !important;
-}
-
-html[data-site-theme="neon"] .nav .cta,
-html[data-site-theme="neon"] .search button,
-html[data-site-theme="neon"] .download,
-html[data-site-theme="neon"] .cta-section a,
-html[data-site-theme="neon"] .btn:not(.btn-ghost) {
-  color: #eaffff !important;
-  background: linear-gradient(120deg, rgba(15, 95, 220, 0.92), rgba(17, 147, 239, 0.94), rgba(27, 211, 255, 0.88)) !important;
-  border: 1px solid rgba(133, 227, 255, 0.74) !important;
-  box-shadow: 0 0 22px rgba(43, 190, 255, 0.35), 0 14px 28px rgba(4, 14, 31, 0.42) !important;
-}
-
-html[data-site-theme="neon"] .ghost-btn,
-html[data-site-theme="neon"] .btn-ghost {
-  background: rgba(7, 22, 44, 0.92) !important;
-  color: #d8efff !important;
-  border-color: rgba(118, 217, 255, 0.34) !important;
-}
-
-html[data-site-theme="neon"] .search {
-  background: rgba(6, 18, 38, 0.9) !important;
-  border-color: rgba(118, 213, 255, 0.36) !important;
-}
-
-html[data-site-theme="neon"] .search input {
-  color: #e8f4ff !important;
-}
-
-html[data-site-theme="neon"] .search input::placeholder {
-  color: #88abcb !important;
-}
-
-html[data-site-theme="neon"] .pill,
-html[data-site-theme="neon"] .badge,
-html[data-site-theme="neon"] .cat .tag,
-html[data-site-theme="neon"] .card-meta span {
-  background: rgba(31, 133, 255, 0.25) !important;
-  color: #dbf3ff !important;
-  border: 1px solid rgba(133, 224, 255, 0.34) !important;
-}
-
 /* Dark Theme */
 html[data-site-theme="dark"] {
   color-scheme: dark !important;
@@ -1570,36 +1409,36 @@ html[data-site-theme="dark"] {
 html[data-site-theme="dark"] body {
   color: #e8edf5 !important;
   background:
-    radial-gradient(860px 520px at 10% -8%, rgba(100, 116, 139, 0.26) 0%, transparent 58%),
-    radial-gradient(780px 520px at 92% 2%, rgba(58, 80, 110, 0.24) 0%, transparent 60%),
+    radial-gradient(860px 520px at 10% -8%, rgba(100, 116, 139, 0.24) 0%, transparent 58%),
+    radial-gradient(780px 520px at 92% 2%, rgba(58, 80, 110, 0.22) 0%, transparent 60%),
     linear-gradient(180deg, #0b1118 0%, #0d131d 52%, #0a0f16 100%) !important;
 }
 
 html[data-site-theme="dark"] body::before {
-  opacity: 0.3 !important;
+  opacity: 0.26 !important;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px) !important;
-}
-
-html[data-site-theme="dark"] body::after {
-  background:
-    radial-gradient(540px 320px at 12% 22%, rgba(148, 163, 184, 0.14) 0%, transparent 72%),
-    radial-gradient(640px 340px at 86% 12%, rgba(100, 116, 139, 0.14) 0%, transparent 72%) !important;
+    linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px) !important;
 }
 
 html[data-site-theme="dark"] .site-header {
-  background: rgba(12, 18, 27, 0.9) !important;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.24) !important;
+  background: rgba(11, 17, 26, 0.92) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34) !important;
 }
 
 html[data-site-theme="dark"] .nav {
-  background: rgba(13, 20, 31, 0.78) !important;
-  border-color: rgba(148, 163, 184, 0.24) !important;
+  background: rgba(13, 20, 31, 0.82) !important;
+  border-color: rgba(148, 163, 184, 0.26) !important;
 }
 
 html[data-site-theme="dark"] .nav a {
-  color: #cbd5e1 !important;
+  color: #cfd8e4 !important;
+}
+
+html[data-site-theme="dark"] .nav a:not(.cta) {
+  background: rgba(19, 28, 42, 0.82) !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
 }
 
 html[data-site-theme="dark"] .hero > .reveal,
@@ -1612,6 +1451,7 @@ html[data-site-theme="dark"] .card,
 html[data-site-theme="dark"] .file,
 html[data-site-theme="dark"] .cta-section,
 html[data-site-theme="dark"] .media-card,
+html[data-site-theme="dark"] .search,
 html[data-site-theme="dark"] .search input {
   background: linear-gradient(180deg, rgba(17, 25, 39, 0.94), rgba(13, 18, 29, 0.96)) !important;
   border-color: rgba(148, 163, 184, 0.24) !important;
@@ -1630,7 +1470,8 @@ html[data-site-theme="dark"] .card-content h3,
 html[data-site-theme="dark"] .section-head h2,
 html[data-site-theme="dark"] .discord-card h2,
 html[data-site-theme="dark"] .summary-card strong {
-  color: #f1f5f9 !important;
+  color: #f5f8fd !important;
+  text-shadow: none !important;
 }
 
 html[data-site-theme="dark"] p,
@@ -1653,7 +1494,7 @@ html[data-site-theme="dark"] .media-info span,
 html[data-site-theme="dark"] .discord-card p,
 html[data-site-theme="dark"] .summary-card span,
 html[data-site-theme="dark"] footer {
-  color: #c7d1de !important;
+  color: #d1dae7 !important;
 }
 
 html[data-site-theme="dark"] .nav .cta,
@@ -1663,7 +1504,8 @@ html[data-site-theme="dark"] .cta-section a,
 html[data-site-theme="dark"] .btn:not(.btn-ghost) {
   color: #f8fbff !important;
   background: linear-gradient(120deg, #334155 0%, #3f536d 56%, #64748b 100%) !important;
-  border: 1px solid rgba(148, 163, 184, 0.6) !important;
+  border: 1px solid rgba(148, 163, 184, 0.58) !important;
+  text-shadow: none !important;
 }
 
 html[data-site-theme="dark"] .ghost-btn,
@@ -1671,11 +1513,6 @@ html[data-site-theme="dark"] .btn-ghost {
   background: rgba(15, 23, 36, 0.95) !important;
   color: #d5dde7 !important;
   border-color: rgba(148, 163, 184, 0.34) !important;
-}
-
-html[data-site-theme="dark"] .search {
-  background: rgba(16, 23, 36, 0.9) !important;
-  border-color: rgba(148, 163, 184, 0.32) !important;
 }
 
 html[data-site-theme="dark"] .search input {
@@ -1709,26 +1546,20 @@ html[data-site-theme="light"] body {
 }
 
 html[data-site-theme="light"] body::before {
-  opacity: 0.34 !important;
+  opacity: 0.32 !important;
   background-image:
     linear-gradient(rgba(56, 96, 156, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(56, 96, 156, 0.08) 1px, transparent 1px) !important;
 }
 
-html[data-site-theme="light"] body::after {
-  background:
-    radial-gradient(520px 280px at 10% 18%, rgba(154, 212, 255, 0.22) 0%, transparent 72%),
-    radial-gradient(620px 360px at 88% 18%, rgba(109, 173, 255, 0.18) 0%, transparent 74%) !important;
-}
-
 html[data-site-theme="light"] .site-header {
-  background: rgba(248, 252, 255, 0.84) !important;
+  background: rgba(248, 252, 255, 0.88) !important;
   border-bottom: 1px solid rgba(112, 154, 209, 0.22) !important;
   box-shadow: 0 12px 28px rgba(52, 88, 140, 0.1) !important;
 }
 
 html[data-site-theme="light"] .nav {
-  background: rgba(255, 255, 255, 0.76) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
   border: 1px solid rgba(121, 172, 238, 0.26) !important;
   box-shadow: 0 10px 20px rgba(44, 85, 142, 0.1) !important;
 }
@@ -1751,8 +1582,10 @@ html[data-site-theme="light"] .cat,
 html[data-site-theme="light"] .card,
 html[data-site-theme="light"] .file,
 html[data-site-theme="light"] .cta-section,
-html[data-site-theme="light"] .media-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 251, 255, 0.94)) !important;
+html[data-site-theme="light"] .media-card,
+html[data-site-theme="light"] .search,
+html[data-site-theme="light"] .search input {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 251, 255, 0.96)) !important;
   border: 1px solid rgba(126, 176, 238, 0.28) !important;
   box-shadow: 0 18px 38px rgba(44, 82, 131, 0.14) !important;
 }
@@ -1770,6 +1603,7 @@ html[data-site-theme="light"] .section-head h2,
 html[data-site-theme="light"] .discord-card h2,
 html[data-site-theme="light"] .summary-card strong {
   color: #122742 !important;
+  text-shadow: none !important;
 }
 
 html[data-site-theme="light"] p,
@@ -1803,6 +1637,7 @@ html[data-site-theme="light"] .btn:not(.btn-ghost) {
   color: #ffffff !important;
   background: linear-gradient(120deg, #1164d8 0%, #177ff5 56%, #2fc4ff 100%) !important;
   border: 1px solid rgba(84, 169, 255, 0.55) !important;
+  text-shadow: none !important;
 }
 
 html[data-site-theme="light"] .ghost-btn,
@@ -1810,12 +1645,6 @@ html[data-site-theme="light"] .btn-ghost {
   background: #ffffff !important;
   color: #1f3b59 !important;
   border-color: rgba(106, 156, 225, 0.34) !important;
-}
-
-html[data-site-theme="light"] .search {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border: 1px solid rgba(112, 170, 245, 0.32) !important;
-  box-shadow: 0 10px 24px rgba(58, 96, 146, 0.14) !important;
 }
 
 html[data-site-theme="light"] .search input {
@@ -1833,162 +1662,4 @@ html[data-site-theme="light"] .card-meta span {
   background: rgba(199, 229, 255, 0.5) !important;
   color: #2b4a6f !important;
   border: 1px solid rgba(129, 183, 244, 0.36) !important;
-}
-
-/* Mono Theme */
-html[data-site-theme="mono"] {
-  color-scheme: light !important;
-}
-
-html[data-site-theme="mono"] body {
-  color: #111111 !important;
-  background:
-    radial-gradient(900px 560px at 8% -6%, rgba(0, 0, 0, 0.08) 0%, transparent 58%),
-    radial-gradient(780px 500px at 96% 8%, rgba(0, 0, 0, 0.06) 0%, transparent 56%),
-    linear-gradient(180deg, #ffffff 0%, #f3f3f3 52%, #ededed 100%) !important;
-}
-
-html[data-site-theme="mono"] body::before {
-  opacity: 0.24 !important;
-  background-image:
-    linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px) !important;
-}
-
-html[data-site-theme="mono"] body::after {
-  background:
-    radial-gradient(520px 280px at 10% 18%, rgba(0, 0, 0, 0.08) 0%, transparent 72%),
-    radial-gradient(620px 360px at 88% 18%, rgba(0, 0, 0, 0.06) 0%, transparent 74%) !important;
-}
-
-html[data-site-theme="mono"] .site-header {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1) !important;
-}
-
-html[data-site-theme="mono"] .nav {
-  background: rgba(255, 255, 255, 0.82) !important;
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08) !important;
-}
-
-html[data-site-theme="mono"] .nav a {
-  color: #111111 !important;
-}
-
-html[data-site-theme="mono"] .nav a:not(.cta) {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border-color: rgba(0, 0, 0, 0.16) !important;
-}
-
-html[data-site-theme="mono"] .logo-mark {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
-}
-
-html[data-site-theme="mono"] .logo-img {
-  filter: grayscale(1) contrast(1.08) !important;
-}
-
-html[data-site-theme="mono"] .logo-text {
-  background: linear-gradient(90deg, #0a0a0a 0%, #4b4b4b 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-}
-
-html[data-site-theme="mono"] .hero > .reveal,
-html[data-site-theme="mono"] .mod-grid > .mod-info,
-html[data-site-theme="mono"] .side-stack .card,
-html[data-site-theme="mono"] .hero-panel,
-html[data-site-theme="mono"] .panel-item,
-html[data-site-theme="mono"] .cat,
-html[data-site-theme="mono"] .card,
-html[data-site-theme="mono"] .file,
-html[data-site-theme="mono"] .cta-section,
-html[data-site-theme="mono"] .media-card,
-html[data-site-theme="mono"] .search input {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 245, 245, 0.96)) !important;
-  border: 1px solid rgba(0, 0, 0, 0.18) !important;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1) !important;
-}
-
-html[data-site-theme="mono"] h1,
-html[data-site-theme="mono"] h2,
-html[data-site-theme="mono"] h3,
-html[data-site-theme="mono"] h4,
-html[data-site-theme="mono"] h5,
-html[data-site-theme="mono"] h6,
-html[data-site-theme="mono"] .mod-info h1,
-html[data-site-theme="mono"] .card h2,
-html[data-site-theme="mono"] .card-content h3,
-html[data-site-theme="mono"] .section-head h2,
-html[data-site-theme="mono"] .discord-card h2,
-html[data-site-theme="mono"] .summary-card strong {
-  color: #111111 !important;
-}
-
-html[data-site-theme="mono"] p,
-html[data-site-theme="mono"] li,
-html[data-site-theme="mono"] .hero p,
-html[data-site-theme="mono"] .section p,
-html[data-site-theme="mono"] .mod-info p,
-html[data-site-theme="mono"] .lead,
-html[data-site-theme="mono"] .helper,
-html[data-site-theme="mono"] .note,
-html[data-site-theme="mono"] .hint,
-html[data-site-theme="mono"] .about-copy p,
-html[data-site-theme="mono"] .card-content p,
-html[data-site-theme="mono"] .card-meta span,
-html[data-site-theme="mono"] .panel-item span,
-html[data-site-theme="mono"] .file .label,
-html[data-site-theme="mono"] .file span,
-html[data-site-theme="mono"] .search-hint,
-html[data-site-theme="mono"] .media-info span,
-html[data-site-theme="mono"] .discord-card p,
-html[data-site-theme="mono"] .summary-card span,
-html[data-site-theme="mono"] footer {
-  color: #2f2f2f !important;
-}
-
-html[data-site-theme="mono"] .nav .cta,
-html[data-site-theme="mono"] .search button,
-html[data-site-theme="mono"] .download,
-html[data-site-theme="mono"] .cta-section a,
-html[data-site-theme="mono"] .btn:not(.btn-ghost) {
-  color: #ffffff !important;
-  background: linear-gradient(120deg, #000000 0%, #2b2b2b 56%, #535353 100%) !important;
-  border: 1px solid rgba(0, 0, 0, 0.7) !important;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24) !important;
-}
-
-html[data-site-theme="mono"] .ghost-btn,
-html[data-site-theme="mono"] .btn-ghost {
-  background: #ffffff !important;
-  color: #111111 !important;
-  border-color: rgba(0, 0, 0, 0.26) !important;
-}
-
-html[data-site-theme="mono"] .search {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(0, 0, 0, 0.24) !important;
-}
-
-html[data-site-theme="mono"] .search input {
-  color: #111111 !important;
-}
-
-html[data-site-theme="mono"] .search input::placeholder {
-  color: #595959 !important;
-}
-
-html[data-site-theme="mono"] .pill,
-html[data-site-theme="mono"] .badge,
-html[data-site-theme="mono"] .cat .tag,
-html[data-site-theme="mono"] .card-meta span {
-  background: rgba(0, 0, 0, 0.08) !important;
-  color: #111111 !important;
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
 }
