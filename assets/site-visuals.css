@@ -1103,3 +1103,209 @@ footer {
     filter: none;
   }
 }
+
+/* Theme Refresh 20260328 */
+:root {
+  --bg: #eef5ff;
+  --bg-2: #dfefff;
+  --card: #ffffff;
+  --ink: #13263d;
+  --muted: #4b6280;
+  --accent: #167dff;
+  --accent-2: #2fc4ff;
+  --line: rgba(22, 125, 255, 0.18);
+  --line-strong: rgba(47, 196, 255, 0.32);
+  --shadow: 0 20px 42px rgba(29, 66, 120, 0.16);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(900px 560px at 8% -6%, rgba(47, 196, 255, 0.26) 0%, transparent 58%),
+    radial-gradient(780px 500px at 96% 8%, rgba(22, 125, 255, 0.2) 0%, transparent 56%),
+    linear-gradient(180deg, #f5f9ff 0%, #edf5ff 52%, #e8f2ff 100%);
+}
+
+body::before {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(56, 96, 156, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 96, 156, 0.08) 1px, transparent 1px);
+}
+
+body::after {
+  background:
+    radial-gradient(520px 280px at 10% 18%, rgba(154, 212, 255, 0.22) 0%, transparent 72%),
+    radial-gradient(620px 360px at 88% 18%, rgba(109, 173, 255, 0.18) 0%, transparent 74%);
+}
+
+.site-header {
+  background: rgba(248, 252, 255, 0.84);
+  border-bottom: 1px solid rgba(112, 154, 209, 0.22);
+  box-shadow: 0 12px 28px rgba(52, 88, 140, 0.1);
+}
+
+.logo-text {
+  background: linear-gradient(90deg, #0f2b4a 0%, #1a61b0 52%, #1d9ad6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav {
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(121, 172, 238, 0.26);
+  box-shadow: 0 10px 20px rgba(44, 85, 142, 0.1);
+}
+
+.nav a {
+  color: #23405f;
+}
+
+.nav a:not(.cta) {
+  background: rgba(238, 246, 255, 0.88);
+  border-color: rgba(139, 189, 248, 0.22);
+}
+
+.nav a:not(.cta):hover,
+.nav a:not(.cta):focus-visible {
+  background: rgba(220, 238, 255, 0.98);
+  border-color: rgba(104, 172, 251, 0.44);
+  box-shadow: 0 8px 16px rgba(58, 96, 152, 0.14);
+}
+
+.nav .cta,
+.search button,
+.download,
+.cta-section a,
+.btn:not(.btn-ghost) {
+  color: #ffffff;
+  background: linear-gradient(120deg, #1164d8 0%, #177ff5 56%, #2fc4ff 100%);
+  border: 1px solid rgba(84, 169, 255, 0.55);
+  text-shadow: none;
+  box-shadow: 0 12px 24px rgba(27, 99, 190, 0.24);
+}
+
+.nav .cta:hover,
+.search button:hover,
+.download:hover,
+.cta-section a:hover,
+.btn:not(.btn-ghost):hover {
+  color: #ffffff;
+  background: linear-gradient(120deg, #0f57be 0%, #146bda 54%, #21a6dc 100%);
+  border-color: rgba(39, 143, 238, 0.78);
+  box-shadow: 0 16px 30px rgba(26, 90, 171, 0.28);
+}
+
+.ghost-btn,
+.btn-ghost {
+  background: #ffffff;
+  color: #1f3b59;
+  border-color: rgba(106, 156, 225, 0.34);
+  box-shadow: 0 10px 24px rgba(70, 104, 152, 0.12);
+}
+
+.ghost-btn:hover,
+.btn-ghost:hover {
+  background: #f2f8ff;
+  border-color: rgba(81, 142, 223, 0.54);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.mod-info h1,
+.card h2,
+.card-content h3,
+.section-head h2,
+.discord-card h2,
+.summary-card strong {
+  color: #122742;
+  text-shadow: none;
+}
+
+p,
+li,
+.hero p,
+.section p,
+.mod-info p,
+.lead,
+.helper,
+.note,
+.hint,
+.about-copy p,
+.card-content p,
+.card-meta span,
+.panel-item span,
+.file .label,
+.file span,
+.search-hint,
+.media-info span,
+.discord-card p,
+.summary-card span,
+footer {
+  color: #3f5672 !important;
+}
+
+.hero > .reveal,
+.mod-grid > .mod-info,
+.side-stack .card,
+.card,
+.cat,
+.hero-panel,
+.panel-item,
+.cta-section,
+.file,
+.media-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 251, 255, 0.94));
+  border: 1px solid rgba(126, 176, 238, 0.28);
+  box-shadow: 0 18px 38px rgba(44, 82, 131, 0.14);
+}
+
+.hero > .reveal::before,
+.hero-panel::before,
+.card::before,
+.cat::before,
+.side-stack .card::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.66) 0%, rgba(112, 177, 255, 0.24) 50%, rgba(255, 255, 255, 0.5) 100%);
+}
+
+.search {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(112, 170, 245, 0.32);
+  box-shadow: 0 10px 24px rgba(58, 96, 146, 0.14);
+}
+
+.search input {
+  color: #112741;
+}
+
+.search input::placeholder {
+  color: #6d85a3;
+}
+
+.pill,
+.badge,
+.cat .tag,
+.card-meta span {
+  background: rgba(199, 229, 255, 0.5);
+  color: #2b4a6f;
+  border: 1px solid rgba(129, 183, 244, 0.36);
+}
+
+.card:hover,
+.cat:hover {
+  border-color: rgba(86, 156, 238, 0.56);
+  box-shadow: 0 24px 48px rgba(40, 80, 128, 0.18);
+}
+
+footer {
+  opacity: 0.95;
+}
