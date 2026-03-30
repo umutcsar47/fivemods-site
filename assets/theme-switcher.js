@@ -3,6 +3,7 @@
   const fabId = "fm-theme-fab";
   const panelId = "fm-theme-panel";
   const storageKey = "fivemods-site-theme-v1";
+  const usernameKey = "fivemods-user-name-v1";
 
   if (!root || !document.body) {
     return;
@@ -22,6 +23,44 @@
     } catch (error) {
     }
     return "dark";
+  }
+
+  function sanitizeUsername(value) {
+    const normalized = String(value || "").replace(/\s+/g, " ").trim();
+    if (normalized.length < 3 || normalized.length > 24) {
+      return "";
+    }
+
+    if (!/^[\p{L}\p{N}_. -]+$/u.test(normalized)) {
+      return "";
+    }
+
+    return normalized;
+  }
+
+  function getStoredUsername() {
+    try {
+      return sanitizeUsername(window.localStorage.getItem(usernameKey) || "");
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function updateUserChips() {
+    const username = getStoredUsername();
+    const chips = document.querySelectorAll("[data-user-chip]");
+
+    chips.forEach(function (chip) {
+      const label = username ? "@" + username : "Kullanici";
+      chip.textContent = label;
+      chip.classList.toggle("is-empty", !username);
+      chip.setAttribute(
+        "title",
+        username
+          ? "Aktif kullanici: @" + username
+          : "Kullanici adi girilmedi"
+      );
+    });
   }
 
   function storeTheme(value) {
@@ -47,6 +86,8 @@
         button.classList.toggle("is-active", button.getAttribute("data-theme") === theme);
       });
     }
+
+    updateUserChips();
   }
 
   function closePanel() {
@@ -127,4 +168,8 @@
 
   setTheme(getStoredTheme());
   ensureControls();
+  updateUserChips();
+  window.addEventListener("storage", updateUserChips);
+  window.addEventListener("fm-user-updated", updateUserChips);
+  window.setTimeout(updateUserChips, 1200);
 })();

@@ -67,6 +67,11 @@
 
     try {
       window.localStorage.setItem(usernameKey, username);
+      window.dispatchEvent(
+        new CustomEvent("fm-user-updated", {
+          detail: { username: username }
+        })
+      );
     } catch (error) {
     }
 
