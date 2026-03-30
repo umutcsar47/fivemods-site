@@ -17,15 +17,6 @@
     return;
   }
 
-  const isDesktopApp =
-    typeof navigator !== "undefined" &&
-    /Electron/i.test(String(navigator.userAgent || ""));
-
-  if (isDesktopApp) {
-    clearPending();
-    return;
-  }
-
   const pathName = (window.location.pathname || "").toLowerCase();
   const isHomePage =
     pathName.endsWith("/") ||
