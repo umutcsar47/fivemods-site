@@ -536,10 +536,66 @@ body.fm-intro-active > footer {
   line-height: 1.65;
 }
 
+.fm-enter-user {
+  width: min(360px, 100%);
+  margin: 0 auto 14px;
+  text-align: left;
+}
+
+.fm-enter-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a2dfff;
+  font-family: "Chakra Petch", "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.fm-enter-input {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(98, 224, 255, 0.5);
+  background: rgba(0, 0, 0, 0.36);
+  color: #e5f7ff;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.fm-enter-input::placeholder {
+  color: #8fb9d5;
+}
+
+.fm-enter-input:focus {
+  outline: none;
+  border-color: rgba(118, 232, 255, 0.86);
+  box-shadow: 0 0 0 2px rgba(47, 184, 255, 0.22);
+}
+
+.fm-enter-status {
+  min-height: 20px;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #a6cbe7;
+}
+
+.fm-enter-status.is-success {
+  color: #7df3c1;
+}
+
+.fm-enter-status.is-error {
+  color: #ffb9b9;
+}
+
 .fm-enter-buttons {
   display: grid;
   gap: 10px;
-  width: min(320px, 100%);
+  width: min(360px, 100%);
   margin: 0 auto;
 }
 

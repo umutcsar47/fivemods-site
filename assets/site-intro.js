@@ -1,6 +1,12 @@
-(function () {
+﻿(function () {
   const root = document.documentElement;
   const body = document.body;
+  const usernameKey = "fivemods-user-name-v1";
+  const usernameDownloadFile = "fivemods-user.json";
+  const setupDownloadHref = new URL(
+    "downloads/FiveMods-Setup-1.2.7.exe?v=20260330-app-1",
+    window.location.href
+  ).href;
 
   const clearPending = function () {
     root.classList.remove("fm-intro-pending");
@@ -23,7 +29,8 @@
     return;
   }
 
-  const reducedMotion = window.matchMedia &&
+  const reducedMotion =
+    window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reducedMotion) {
@@ -31,10 +38,74 @@
     return;
   }
 
+  const sanitizeUsername = function (value) {
+    const normalized = String(value || "").replace(/\s+/g, " ").trim();
+    if (normalized.length < 3 || normalized.length > 24) {
+      return "";
+    }
+
+    if (!/^[\p{L}\p{N}_. -]+$/u.test(normalized)) {
+      return "";
+    }
+
+    return normalized;
+  };
+
+  const getStoredUsername = function () {
+    try {
+      return sanitizeUsername(window.localStorage.getItem(usernameKey) || "");
+    } catch (error) {
+      return "";
+    }
+  };
+
+  const setStoredUsername = function (value) {
+    const username = sanitizeUsername(value);
+    if (!username) {
+      return "";
+    }
+
+    try {
+      window.localStorage.setItem(usernameKey, username);
+    } catch (error) {
+    }
+
+    return username;
+  };
+
+  const triggerFileDownload = function (href, fileName) {
+    const link = document.createElement("a");
+    link.href = href;
+    if (fileName) {
+      link.download = fileName;
+    }
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
+  const downloadUsernamePayload = function (username) {
+    const payload = {
+      username: username,
+      savedAt: new Date().toISOString(),
+      source: "fivemods-web-intro"
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json;charset=utf-8"
+    });
+    const href = URL.createObjectURL(blob);
+    triggerFileDownload(href, usernameDownloadFile);
+    window.setTimeout(function () {
+      URL.revokeObjectURL(href);
+    }, 1600);
+  };
+
   const logo = document.querySelector(".logo-img");
   const metaImage = document.querySelector('meta[property="og:image"]');
+  const aboutHref = new URL("hakkinda.html?v=20260330-opening-1", window.location.href).href;
   let logoSrc = "";
-  const aboutHref = new URL("hakkinda.html?v=20260327-opening-2", window.location.href).href;
 
   try {
     if (logo && logo.getAttribute("src")) {
@@ -53,13 +124,21 @@
     '<canvas class="fm-intro-canvas" aria-hidden="true"></canvas>',
     '<div class="fm-intro-light" aria-hidden="true"></div>',
     '<div class="fm-enter-shell">',
-    logoSrc ? '  <img class="fm-enter-logo" src="' + logoSrc + '" alt="FiveMods logo">' : '  <div class="fm-enter-logo"></div>',
+    logoSrc
+      ? '  <img class="fm-enter-logo" src="' + logoSrc + '" alt="FiveMods logo">'
+      : '  <div class="fm-enter-logo"></div>',
     '  <h1 class="fm-enter-title">FiveMods</h1>',
-    '  <p class="fm-enter-copy">Mod merkezi acilmaya hazir. Guncel paketlere tek tikla ulas.</p>',
+    '  <p class="fm-enter-copy">Guncel mod paketlerine girmeden once kullanici adini ayarla.</p>',
+    '  <div class="fm-enter-user">',
+    '    <label class="fm-enter-label" for="fm-enter-username">Kullanici adi</label>',
+    '    <input id="fm-enter-username" class="fm-enter-input" type="text" maxlength="24" placeholder="Ornek: umut47" autocomplete="off">',
+    '    <div class="fm-enter-status" data-fm-user-status aria-live="polite"></div>',
+    "  </div>",
     '  <div class="fm-enter-buttons">',
-    '    <button class="fm-enter-btn is-primary" type="button" data-fm-enter>ENTER</button>',
+    '    <button class="fm-enter-btn is-primary" type="button" data-fm-enter>GIRIS</button>',
     '    <a class="fm-enter-btn" href="https://discord.com/channels/1480897873682895064" target="_blank" rel="noopener noreferrer">DISCORD</a>',
     '    <a class="fm-enter-btn" href="' + aboutHref + '" data-fm-about>HAKKINDA</a>',
+    '    <button class="fm-enter-btn" type="button" data-fm-win-download>WINDOWS ICIN INDIRIN</button>',
     "  </div>",
     "</div>",
     '<div class="fm-enter-loading" aria-live="polite">',
@@ -76,6 +155,22 @@
   const canvas = intro.querySelector(".fm-intro-canvas");
   const light = intro.querySelector(".fm-intro-light");
   const enterButton = intro.querySelector("[data-fm-enter]");
+  const usernameInput = intro.querySelector("#fm-enter-username");
+  const downloadButton = intro.querySelector("[data-fm-win-download]");
+  const statusBox = intro.querySelector("[data-fm-user-status]");
+
+  const setStatus = function (message, isError) {
+    if (!statusBox) {
+      return;
+    }
+    statusBox.textContent = message || "";
+    statusBox.classList.toggle("is-error", Boolean(isError));
+    statusBox.classList.toggle("is-success", Boolean(message) && !isError);
+  };
+
+  if (usernameInput) {
+    usernameInput.value = getStoredUsername();
+  }
 
   const listeners = [];
   const addListener = function (target, eventName, handler, options) {
@@ -136,6 +231,22 @@
     finishTimer = window.setTimeout(finish, 1380);
   };
 
+  const requireAndSaveUsername = function () {
+    const raw = usernameInput ? usernameInput.value : "";
+    const username = setStoredUsername(raw);
+
+    if (!username) {
+      setStatus("Kullanici adi 3-24 karakter olmali ve gecerli olmalidir.", true);
+      if (usernameInput) {
+        usernameInput.focus();
+      }
+      return "";
+    }
+
+    setStatus("Hazir: @" + username, false);
+    return username;
+  };
+
   body.classList.add("fm-intro-active", "fm-intro-lock");
   root.classList.add("fm-intro-lock");
   body.appendChild(intro);
@@ -146,7 +257,49 @@
   });
 
   if (enterButton) {
-    addListener(enterButton, "click", startLoading);
+    addListener(enterButton, "click", function () {
+      const username = requireAndSaveUsername();
+      if (username) {
+        startLoading();
+      }
+    });
+  }
+
+  if (usernameInput) {
+    addListener(usernameInput, "keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (enterButton) {
+          enterButton.click();
+        }
+      }
+    });
+
+    addListener(usernameInput, "input", function () {
+      setStatus("", false);
+    });
+  }
+
+  if (downloadButton) {
+    addListener(downloadButton, "click", function () {
+      const username = sanitizeUsername(usernameInput ? usernameInput.value : "") || getStoredUsername();
+
+      if (username) {
+        setStoredUsername(username);
+        downloadUsernamePayload(username);
+        setStatus(
+          "Kullanici dosyasi olusturuldu. Uygulama @" + username + " ile acilacak.",
+          false
+        );
+      } else {
+        setStatus(
+          "Kullanici adi olmadan indiriliyor. Uygulama acilisinda isim istenecek.",
+          true
+        );
+      }
+
+      triggerFileDownload(setupDownloadHref, "FiveMods-Setup-1.2.7.exe");
+    });
   }
 
   const updateLight = function (x, y) {
@@ -157,16 +310,26 @@
     light.style.top = String(y) + "px";
   };
 
-  addListener(window, "mousemove", function (event) {
-    updateLight(event.clientX, event.clientY);
-  }, { passive: true });
+  addListener(
+    window,
+    "mousemove",
+    function (event) {
+      updateLight(event.clientX, event.clientY);
+    },
+    { passive: true }
+  );
 
-  addListener(window, "touchmove", function (event) {
-    if (!event.touches || !event.touches.length) {
-      return;
-    }
-    updateLight(event.touches[0].clientX, event.touches[0].clientY);
-  }, { passive: true });
+  addListener(
+    window,
+    "touchmove",
+    function (event) {
+      if (!event.touches || !event.touches.length) {
+        return;
+      }
+      updateLight(event.touches[0].clientX, event.touches[0].clientY);
+    },
+    { passive: true }
+  );
 
   updateLight(window.innerWidth / 2, window.innerHeight / 2);
 
@@ -217,5 +380,4 @@
   addListener(window, "resize", resetParticles, { passive: true });
   resetParticles();
   drawParticles();
-
 })();
