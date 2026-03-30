@@ -78,6 +78,25 @@
     return username;
   };
 
+  const consumeBootstrapUserFromUrl = function () {
+    try {
+      const current = new URL(window.location.href);
+      const bootstrapUser = sanitizeUsername(current.searchParams.get("fmUser"));
+      if (!bootstrapUser) {
+        return "";
+      }
+
+      setStoredUsername(bootstrapUser);
+      current.searchParams.delete("fmUser");
+      window.history.replaceState({}, "", current.toString());
+      return bootstrapUser;
+    } catch (error) {
+      return "";
+    }
+  };
+
+  consumeBootstrapUserFromUrl();
+
   const triggerFileDownload = function (href, fileName) {
     const link = document.createElement("a");
     link.href = href;
