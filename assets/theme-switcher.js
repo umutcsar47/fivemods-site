@@ -51,13 +51,13 @@
     const chips = document.querySelectorAll("[data-user-chip]");
 
     chips.forEach(function (chip) {
-      const label = username ? "@" + username : "Kullanici";
+      const label = username ? username : "Kullanici";
       chip.textContent = label;
       chip.classList.toggle("is-empty", !username);
       chip.setAttribute(
         "title",
         username
-          ? "Aktif kullanici: @" + username
+          ? "Aktif kullanici: " + username
           : "Kullanici adi girilmedi"
       );
     });

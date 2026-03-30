@@ -248,7 +248,7 @@
       return "";
     }
 
-    setStatus("Hazir: @" + username, false);
+    setStatus("Hazir: " + username, false);
     return username;
   };
 
@@ -293,7 +293,7 @@
         setStoredUsername(username);
         downloadUsernamePayload(username);
         setStatus(
-          "Kullanici dosyasi olusturuldu. Uygulama @" + username + " ile acilacak.",
+          "Kullanici dosyasi olusturuldu. Uygulama " + username + " ile acilacak.",
           false
         );
       } else {
