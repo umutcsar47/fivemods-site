@@ -9,6 +9,7 @@
   var refreshButton = document.getElementById("refresh-stats");
   var statusBox = document.getElementById("status-box");
   var totalBox = document.getElementById("total-downloads");
+  var appBox = document.getElementById("app-downloads");
   var trackedBox = document.getElementById("tracked-mods");
   var updatedBox = document.getElementById("last-updated");
   var cardsBox = document.getElementById("stats-cards");
@@ -39,6 +40,9 @@
 
   function renderStats(data) {
     totalBox.textContent = String(data.totalDownloads || 0);
+    if (appBox) {
+      appBox.textContent = String(data.appDownloads || 0);
+    }
     trackedBox.textContent = String(data.trackedMods || 0);
     updatedBox.textContent = formatDate(data.generatedAt);
 
@@ -57,9 +61,28 @@
       var meta = document.createElement("p");
       meta.textContent = "Son indirme: " + formatDate(item.lastDownloadedAt);
 
+      var names = Array.isArray(item.downloaders) ? item.downloaders : [];
+      var list = document.createElement("ul");
+      list.className = "downloader-list";
+
+      if (!names.length) {
+        var emptyItem = document.createElement("li");
+        emptyItem.textContent = "Kullanıcı adı kaydı yok";
+        list.appendChild(emptyItem);
+      } else {
+        names.forEach(function (entry) {
+          var row = document.createElement("li");
+          var name = entry && entry.name ? entry.name : "Bilinmeyen";
+          var countText = Number(entry && entry.count ? entry.count : 0);
+          row.textContent = countText > 1 ? name + " (" + countText + ")" : name;
+          list.appendChild(row);
+        });
+      }
+
       card.appendChild(title);
       card.appendChild(count);
       card.appendChild(meta);
+      card.appendChild(list);
       cardsBox.appendChild(card);
     });
   }

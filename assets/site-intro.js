@@ -3,6 +3,7 @@
   const body = document.body;
   const usernameKey = "fivemods-user-name-v1";
   const usernameDownloadFile = "fivemods-user.json";
+  const windowsAppSlug = "windows-app";
   const setupDownloadHref = new URL(
     "downloads/FiveMods-Setup-1.2.7.exe?v=20260330-app-1",
     window.location.href
@@ -107,6 +108,40 @@
     document.body.appendChild(link);
     link.click();
     link.remove();
+  };
+
+  const buildWindowsAppDownloadHref = function (username) {
+    if (typeof window.FiveModsBuildTrackedDownloadUrl === "function") {
+      try {
+        const trackedByHelper =
+          window.FiveModsBuildTrackedDownloadUrl(windowsAppSlug, setupDownloadHref) ||
+          setupDownloadHref;
+
+        if (!username) {
+          return trackedByHelper;
+        }
+
+        const helperUrl = new URL(trackedByHelper, window.location.href);
+        helperUrl.searchParams.set("user", username);
+        return helperUrl.toString();
+      } catch (error) {
+      }
+    }
+
+    try {
+      const cfg = window.FiveModsCounterConfig || {};
+      const base = String(cfg.workerBaseUrl || "").trim().replace(/\/+$/, "");
+      if (base) {
+        const directUrl = new URL(base + "/download/" + encodeURIComponent(windowsAppSlug));
+        if (username) {
+          directUrl.searchParams.set("user", username);
+        }
+        return directUrl.toString();
+      }
+    } catch (error) {
+    }
+
+    return setupDownloadHref;
   };
 
   const downloadUsernamePayload = function (username) {
@@ -322,7 +357,7 @@
         );
       }
 
-      triggerFileDownload(setupDownloadHref, "FiveMods-Setup-1.2.7.exe");
+      triggerFileDownload(buildWindowsAppDownloadHref(username), "FiveMods-Setup-1.2.7.exe");
     });
   }
 

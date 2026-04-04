@@ -92,7 +92,7 @@
     .summary-grid {
       display: grid;
       gap: 16px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       margin-top: 28px;
     }
 
@@ -239,6 +239,18 @@
       font-size: 14px;
     }
 
+    .downloader-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .downloader-list li + li {
+      margin-top: 4px;
+    }
+
     .helper {
       margin: 0;
       color: var(--muted);
@@ -267,12 +279,16 @@
       <article class="panel hero-copy">
         <span class="eyebrow">FiveMods Admin</span>
         <h1>Gerçek İndirme Sayacı</h1>
-        <p class="lead">Bu ekran herkese açık bir liste değildir. Sayaç verisi sadece gizli admin anahtarını giren tarafta görünür. Biri siteden ZIP indirdiğinde sayı burada artar.</p>
+        <p class="lead">Bu ekran herkese açık bir liste değildir. Sayaç verisi sadece gizli admin anahtarını giren tarafta görünür. Mod ve uygulama indirmeleri ile kullanıcı adları burada listelenir.</p>
 
         <div class="summary-grid">
           <div class="summary-card">
             <span>Toplam İndirme</span>
             <strong id="total-downloads">0</strong>
+          </div>
+          <div class="summary-card">
+            <span>Uygulama İndirme</span>
+            <strong id="app-downloads">0</strong>
           </div>
           <div class="summary-card">
             <span>Takip Edilen Mod</span>
@@ -308,13 +324,13 @@
     </section>
 
     <section class="panel stats-area">
-      <h2>Mod Bazlı Sayaçlar</h2>
+      <h2>Paket Bazlı Sayaçlar</h2>
       <div id="stats-cards" class="stats-cards"></div>
     </section>
   </main>
 
-  <script src="assets/fivemods-counter-config.js"></script>
-  <script src="assets/admin-counter.js"></script>
+  <script src="assets/fivemods-counter-config.js?v=20260404-1"></script>
+  <script src="assets/admin-counter.js?v=20260404-1"></script>
   <script src="assets/cleanup-pwa.js?v=20260323-1"></script>
 </body>
 </html>
