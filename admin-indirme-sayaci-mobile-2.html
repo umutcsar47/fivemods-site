@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>FiveMods Admin Telefon 2</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0d1f38">
+  <link rel="manifest" href="admin-phone-2.webmanifest">
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=20260323-3">
+  <style>
+    :root {
+      --bg: #081425;
+      --panel: #102746;
+      --panel-2: #0d213b;
+      --line: rgba(130, 216, 255, 0.32);
+      --text: #eaf4ff;
+      --muted: #a9c8e9;
+      --accent: #40beff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(640px 380px at 12% -8%, rgba(50, 175, 255, 0.3), transparent 60%),
+        linear-gradient(180deg, #060f1d, #0b1c34);
+      min-height: 100vh;
+      padding: 12px;
+    }
+
+    .app { display: grid; gap: 12px; width: min(560px, 100%); margin: 0 auto; }
+    .bar, .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(11, 28, 50, 0.96), rgba(9, 22, 39, 0.96));
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar h1 { margin: 0; font-size: 22px; }
+    .bar p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .routes { display: flex; gap: 8px; flex-wrap: wrap; }
+    .routes a, .routes button {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .routes button[hidden] { display: none; }
+
+    .stats { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      display: grid;
+      gap: 6px;
+    }
+    .stat span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .stat strong { font-size: 20px; line-height: 1; }
+
+    label { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    input {
+      width: 100%;
+      min-height: 42px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.28);
+      color: var(--text);
+      padding: 0 12px;
+      font-size: 14px;
+      outline: none;
+    }
+    .actions { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .actions button {
+      min-height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(142, 225, 255, 0.68);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      background: linear-gradient(120deg, #1d79f2, var(--accent));
+    }
+
+    .status-box, .endpoint-box {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      word-break: break-word;
+    }
+    .status-box.is-error {
+      border-color: rgba(255, 143, 143, 0.44);
+      color: #ffd5d5;
+      background: rgba(120, 0, 0, 0.2);
+    }
+
+    .stats-cards { display: grid; gap: 8px; }
+    .stat-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px;
+    }
+    .stat-card h3 { margin: 0 0 4px; font-size: 16px; }
+    .stat-card strong { font-size: 20px; }
+    .stat-card p { margin: 4px 0 8px; font-size: 12px; color: var(--muted); }
+    .downloader-list {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 12px;
+      color: #d5e8ff;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body data-admin-storage-key="fivemods_admin_secret_phone_2">
+  <main class="app">
+    <header class="bar">
+      <h1>Admin Telefon 2</h1>
+      <p>Bu surum ikinci telefon icin. Ayrica Telefon 1 surumunu ayri cihazda kullanabilirsin.</p>
+      <div class="routes">
+        <a href="admin-sayac-merkez.html">Surum Merkezi</a>
+        <a href="admin-indirme-sayaci-mobile-1.html">Telefon 1</a>
+        <a href="admin-indirme-sayaci.html">Masaustu</a>
+        <button id="install-admin-app" hidden type="button">Uygulamayi Kur</button>
+      </div>
+      <p id="install-admin-hint">Telefon tarayicisinda bu sayfayi ana ekrana ekleyerek app gibi kullanabilirsin.</p>
+    </header>
+
+    <section class="card">
+      <div class="stats">
+        <div class="stat"><span>Toplam Indirme</span><strong id="total-downloads">0</strong></div>
+        <div class="stat"><span>Uygulama</span><strong id="app-downloads">0</strong></div>
+        <div class="stat"><span>Takip Mod</span><strong id="tracked-mods">0</strong></div>
+        <div class="stat"><span>Son Guncel</span><strong id="last-updated">-</strong></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <label for="admin-secret">Gizli Anahtar</label>
+      <input id="admin-secret" type="password" placeholder="Admin anahtari">
+      <div class="actions">
+        <button id="save-secret" type="button">Kaydet</button>
+        <button id="refresh-stats" type="button">Yenile</button>
+      </div>
+      <div id="worker-endpoint" class="endpoint-box">Henuz ayarlanmadi</div>
+      <div id="status-box" class="status-box">Giris bilgisi bekleniyor.</div>
+      <p id="helper-text">Sadece dogru anahtar ile canli indirme listesi gorunur.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0;font-size:18px;">Canli Indirme Akisi</h2>
+      <div id="stats-cards" class="stats-cards"></div>
+    </section>
+  </main>
+
+  <script src="assets/fivemods-counter-config.js?v=20260404-1"></script>
+  <script src="assets/admin-counter.js?v=20260404-2"></script>
+  <script src="assets/admin-mobile-install.js?v=20260404-1"></script>
+</body>
+</html>

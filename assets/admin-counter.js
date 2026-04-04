@@ -1,8 +1,15 @@
-(function () {
+﻿(function () {
   var config = window.FiveModsCounterConfig || {};
   var workerBaseUrl = (config.workerBaseUrl || "").trim().replace(/\/+$/, "");
   var refreshMs = Number(config.statsRefreshMs || 15000);
   var storageKey = "fivemods_admin_secret";
+
+  if (document.body) {
+    var customStorageKey = (document.body.getAttribute("data-admin-storage-key") || "").trim();
+    if (customStorageKey) {
+      storageKey = customStorageKey;
+    }
+  }
 
   var secretInput = document.getElementById("admin-secret");
   var saveButton = document.getElementById("save-secret");
@@ -37,7 +44,7 @@
 
   function formatDate(value) {
     if (!value) {
-      return "Henüz kayıt yok";
+      return "Henuz kayit yok";
     }
 
     var date = new Date(value);
@@ -81,7 +88,7 @@
 
       if (!names.length) {
         var emptyItem = document.createElement("li");
-        emptyItem.textContent = "Kullanıcı adı kaydı yok";
+        emptyItem.textContent = "Kullanici adi kaydi yok";
         list.appendChild(emptyItem);
       } else {
         names.forEach(function (entry) {
@@ -105,17 +112,17 @@
     var secret = secretInput.value.trim();
 
     if (!workerBaseUrl) {
-      setStatus("Sayaç servisi henüz bağlanmadı. assets/fivemods-counter-config.js dosyasına worker adresi eklenmeli.", true);
-      helperBox.textContent = "Worker adresi eklenmeden gerçek sayaç görünmez.";
+      setStatus("Sayac servisi henuz baglanmadi. assets/fivemods-counter-config.js dosyasina worker adresi eklenmeli.", true);
+      helperBox.textContent = "Worker adresi eklenmeden gercek sayac gorunmez.";
       return;
     }
 
     if (!secret) {
-      setStatus("Admin gizli anahtarını gir.", true);
+      setStatus("Admin gizli anahtarini gir.", true);
       return;
     }
 
-    setStatus("Sayaç verileri yenileniyor...", false);
+    setStatus("Sayac verileri yenileniyor...", false);
 
     try {
       var response = await fetch(workerBaseUrl + "/api/stats", {
@@ -135,15 +142,15 @@
 
       var data = await response.json();
       renderStats(data);
-      setStatus("Sayaç verileri güncel.", false);
-      helperBox.textContent = "Bu ekran sadece gizli anahtarı bilen kişilerde veri gösterir.";
+      setStatus("Sayac verileri guncel.", false);
+      helperBox.textContent = "Bu ekran sadece gizli anahtari bilen kisilerde veri gosterir.";
     } catch (error) {
       if (error && error.message === "Failed to fetch") {
         setStatus("Worker baglantisi kurulamadi. Internet veya tarayici engeli olabilir.", true);
         return;
       }
 
-      setStatus("Sayaç verileri alınamadı: " + error.message, true);
+      setStatus("Sayac verileri alinamadi: " + error.message, true);
     }
   }
 
@@ -151,17 +158,17 @@
     var secret = secretInput.value.trim();
 
     if (!secret) {
-      setStatus("Boş anahtar kaydedilemez.", true);
+      setStatus("Bos anahtar kaydedilemez.", true);
       return;
     }
 
     localStorage.setItem(storageKey, secret);
-    setStatus("Admin anahtarı bu tarayıcıda kaydedildi.", false);
+    setStatus("Admin anahtari bu tarayicida kaydedildi.", false);
     loadStats();
   }
 
   if (endpointBox) {
-    endpointBox.textContent = workerBaseUrl || "Henüz ayarlanmadı";
+    endpointBox.textContent = workerBaseUrl || "Henuz ayarlanmadi";
   }
   secretInput.value = localStorage.getItem(storageKey) || "";
 

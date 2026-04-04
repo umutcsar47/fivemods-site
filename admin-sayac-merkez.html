@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FiveMods Admin Surum Secimi</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0b1930">
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0f213b;
+      --panel-2: #132b4b;
+      --line: rgba(125, 210, 255, 0.3);
+      --text: #eaf4ff;
+      --muted: #a8c3e5;
+      --accent: #3bb8ff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(700px 420px at 10% -8%, rgba(41, 168, 255, 0.32), transparent 60%),
+        linear-gradient(180deg, #06101d, #0a1b33);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: min(760px, 100%);
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15, 33, 59, 0.95), rgba(10, 23, 41, 0.95));
+      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35);
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 44px);
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .card strong {
+      font-size: 18px;
+    }
+
+    .card span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .card a {
+      margin-top: 8px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 42px;
+      border-radius: 10px;
+      border: 1px solid rgba(141, 224, 255, 0.65);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(120deg, #1d79f2, var(--accent));
+    }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <h1>Admin Sayac Surum Secimi</h1>
+    <p>Hizli kullanim icin 3 ayri surum hazir: 1 masaustu, 2 telefon. Iki telefon icin ayri ikon ve ayri giris sayfasi kullanabilirsin.</p>
+
+    <section class="grid">
+      <article class="card">
+        <strong>Masaustu Surum</strong>
+        <span>Bilgisayarda kullanmak icin genis panel.</span>
+        <a href="admin-indirme-sayaci.html">Masaustu Ac</a>
+      </article>
+
+      <article class="card">
+        <strong>Telefon Surum 1</strong>
+        <span>Birinci telefon icin optimize panel.</span>
+        <a href="admin-indirme-sayaci-mobile-1.html">Telefon 1 Ac</a>
+      </article>
+
+      <article class="card">
+        <strong>Telefon Surum 2</strong>
+        <span>Ikinci telefon icin optimize panel.</span>
+        <a href="admin-indirme-sayaci-mobile-2.html">Telefon 2 Ac</a>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

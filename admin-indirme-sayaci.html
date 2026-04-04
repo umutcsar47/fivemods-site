@@ -58,6 +58,29 @@
       gap: 18px;
     }
 
+    .version-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .version-links a {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(230, 192, 112, 0.08);
+      color: var(--gold-strong);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .control-topbar {
       display: flex;
       justify-content: space-between;
@@ -430,7 +453,7 @@
     }
   </style>
 </head>
-<body>
+<body data-admin-storage-key="fivemods_admin_secret_pc">
   <main class="vip-shell">
     <header class="control-topbar">
       <div class="topbar-left">
@@ -442,6 +465,12 @@
       </div>
       <span class="topbar-tag">Özel Ofis</span>
     </header>
+
+    <div class="version-links">
+      <a href="admin-sayac-merkez.html">Surum Merkezi</a>
+      <a href="admin-indirme-sayaci-mobile-1.html">Telefon 1</a>
+      <a href="admin-indirme-sayaci-mobile-2.html">Telefon 2</a>
+    </div>
 
     <section class="vip-grid">
       <article class="panel">
@@ -509,7 +538,7 @@
   </main>
 
   <script src="assets/fivemods-counter-config.js?v=20260404-1"></script>
-  <script src="assets/admin-counter.js?v=20260404-1"></script>
+  <script src="assets/admin-counter.js?v=20260404-2"></script>
   <script src="assets/cleanup-pwa.js?v=20260323-1"></script>
 </body>
 </html>
