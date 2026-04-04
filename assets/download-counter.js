@@ -1,5 +1,8 @@
 (function () {
   var usernameKey = "fivemods-user-name-v1";
+  var noTrackSlugs = {
+    "windows-app": true
+  };
 
   function normalizeBaseUrl(value) {
     if (!value || typeof value !== "string") {
@@ -63,8 +66,15 @@
 
   downloadLinks.forEach(function (link) {
     var slug = link.getAttribute("data-download-slug");
+    var originalHref = link.getAttribute("href") || "";
 
     if (!slug) {
+      return;
+    }
+
+    link.setAttribute("data-download-original", originalHref);
+
+    if (noTrackSlugs[slug]) {
       return;
     }
 
@@ -81,6 +91,8 @@
       var latest = buildTrackedDownloadUrl(slug);
       if (latest) {
         link.setAttribute("href", latest);
+      } else if (originalHref) {
+        link.setAttribute("href", originalHref);
       }
     });
   });
