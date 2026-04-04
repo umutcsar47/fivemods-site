@@ -13,8 +13,22 @@
   var trackedBox = document.getElementById("tracked-mods");
   var updatedBox = document.getElementById("last-updated");
   var cardsBox = document.getElementById("stats-cards");
-  var endpointBox = document.getElementById("worker-endpoint");
+  var endpointBox = document.getElementById("worker-endpoint") || document.querySelector(".endpoint-box");
   var helperBox = document.getElementById("helper-text");
+
+  if (
+    !secretInput ||
+    !saveButton ||
+    !refreshButton ||
+    !statusBox ||
+    !totalBox ||
+    !trackedBox ||
+    !updatedBox ||
+    !cardsBox ||
+    !helperBox
+  ) {
+    return;
+  }
 
   function setStatus(message, isError) {
     statusBox.textContent = message;
@@ -146,7 +160,9 @@
     loadStats();
   }
 
-  endpointBox.textContent = workerBaseUrl || "Henüz ayarlanmadı";
+  if (endpointBox) {
+    endpointBox.textContent = workerBaseUrl || "Henüz ayarlanmadı";
+  }
   secretInput.value = localStorage.getItem(storageKey) || "";
 
   saveButton.addEventListener("click", saveSecret);
