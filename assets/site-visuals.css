@@ -1719,3 +1719,22 @@ html[data-site-theme="light"] .card-meta span {
   color: #2b4a6f !important;
   border: 1px solid rgba(129, 183, 244, 0.36) !important;
 }
+
+/* Menu Stability Patch */
+.nav > * {
+  white-space: nowrap;
+}
+
+.nav .user-chip {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .nav .user-chip {
+    width: auto !important;
+    min-width: 132px;
+  }
+}
