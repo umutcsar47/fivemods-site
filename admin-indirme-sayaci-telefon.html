@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>FiveMods Admin Telefon Surumu</title>
+  <meta name="description" content="FiveMods telefon admin sayaci. VIP ve premium tema ile canli indirme merkezi.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="manifest" href="admin-phone.webmanifest">
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=20260323-3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #070707;
+      --bg-2: #0f0d0a;
+      --panel: rgba(18, 16, 13, 0.95);
+      --panel-2: rgba(14, 12, 10, 0.98);
+      --line: rgba(230, 192, 112, 0.26);
+      --line-soft: rgba(230, 192, 112, 0.14);
+      --text: #f4ede0;
+      --muted: #c4b192;
+      --gold: #e6c070;
+      --gold-strong: #f6d99c;
+      --shadow: 0 26px 56px rgba(0, 0, 0, 0.52);
+      --radius-xl: 22px;
+      --radius-lg: 14px;
+      --radius-md: 11px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      color: var(--text);
+      font-family: "Sora", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(246, 217, 156, 0.2), transparent 34%),
+        radial-gradient(circle at 88% 8%, rgba(164, 29, 29, 0.16), transparent 30%),
+        repeating-linear-gradient(125deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 12px),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, #050505 100%);
+      padding: 10px 10px 16px;
+    }
+
+    .vip-shell {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    .control-topbar {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line-soft);
+      background: rgba(11, 10, 9, 0.84);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+    }
+
+    .topbar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .sigil {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--gold-strong);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-shadow: 0 0 18px rgba(246, 217, 156, 0.45);
+      background: linear-gradient(160deg, rgba(230, 192, 112, 0.16), rgba(230, 192, 112, 0.04));
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(26px, 7vw, 36px);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: var(--gold-strong);
+      text-shadow: 0 0 24px rgba(246, 217, 156, 0.3);
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .topbar-tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(230, 192, 112, 0.08);
+      color: var(--gold-strong);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .routes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .routes a,
+    .routes button {
+      min-height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: "Sora", sans-serif;
+      cursor: pointer;
+      padding: 0 10px;
+    }
+
+    .routes button[hidden] {
+      display: none;
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line-soft);
+      background: linear-gradient(155deg, var(--panel), var(--panel-2));
+      box-shadow: var(--shadow);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(246, 217, 156, 0.09), transparent 30%, transparent 70%, rgba(246, 217, 156, 0.06));
+      pointer-events: none;
+    }
+
+    .panel-body {
+      position: relative;
+      z-index: 1;
+      padding: 14px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .summary-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line-soft);
+      background: linear-gradient(155deg, rgba(28, 24, 19, 0.9), rgba(14, 12, 10, 0.88));
+      padding: 10px;
+      min-height: 84px;
+    }
+
+    .summary-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--gold-strong);
+      font-family: "Cormorant Garamond", Georgia, serif;
+    }
+
+    .summary-card em {
+      display: block;
+      margin-top: 6px;
+      font-style: normal;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid rgba(230, 192, 112, 0.28);
+      border-radius: var(--radius-md);
+      background: rgba(8, 8, 8, 0.94);
+      color: var(--text);
+      font-size: 15px;
+      font-family: "Sora", sans-serif;
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    .button-row {
+      margin-top: 10px;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    button {
+      border: 0;
+      border-radius: 11px;
+      min-height: 40px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: "Sora", sans-serif;
+      cursor: pointer;
+      padding: 0 10px;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #f2cf8a, #c49349 58%, #8e682f);
+      color: #1a1207;
+    }
+
+    .ghost-btn {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border: 1px solid var(--line-soft);
+    }
+
+    .status-box,
+    .endpoint-box {
+      margin-top: 10px;
+      border-radius: 11px;
+      border: 1px solid var(--line-soft);
+      background: rgba(0, 0, 0, 0.26);
+      padding: 10px 11px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    .status-box.is-error {
+      color: #ffe7e7;
+      border-color: rgba(255, 127, 127, 0.4);
+      background: rgba(120, 0, 0, 0.16);
+    }
+
+    .helper {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .feed-head h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 25px;
+      letter-spacing: 0.03em;
+      color: var(--gold-strong);
+    }
+
+    .feed-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .stats-cards {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 8px;
+      padding: 10px 0 0;
+    }
+
+    .stat-card {
+      border-radius: 12px;
+      border: 1px solid var(--line-soft);
+      background: linear-gradient(160deg, rgba(30, 25, 20, 0.9), rgba(12, 10, 9, 0.9));
+      padding: 10px;
+    }
+
+    .stat-card h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--gold-strong);
+    }
+
+    .stat-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold-strong);
+      font-size: 22px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+    }
+
+    .stat-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .downloader-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #e9dcc4;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body data-admin-storage-key="fivemods_admin_secret_phone">
+  <main class="vip-shell">
+    <header class="control-topbar">
+      <div class="topbar-head">
+        <div class="topbar-left">
+          <div class="sigil">F</div>
+          <div class="brand">
+            <h1>FiveMods</h1>
+            <p>Telefon VIP Ofis</p>
+          </div>
+        </div>
+        <span class="topbar-tag">Premium</span>
+      </div>
+
+      <div class="routes">
+        <a href="admin-sayac-merkez.html">Surum Merkezi</a>
+        <a href="admin-indirme-sayaci.html">Masaustu</a>
+        <button id="install-admin-app" type="button" hidden>Uygulamayi Kur</button>
+      </div>
+      <p id="install-admin-hint" class="helper">Bu telefon surumunu ana ekrana ekleyerek indirilebilir uygulama gibi kullan.</p>
+    </header>
+
+    <section class="panel">
+      <div class="panel-body">
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span>Toplam Indirme</span>
+            <strong id="total-downloads">0</strong>
+            <em>Tum kaynaklar</em>
+          </div>
+          <div class="summary-card">
+            <span>Uygulama</span>
+            <strong id="app-downloads">0</strong>
+            <em>Windows setup</em>
+          </div>
+          <div class="summary-card">
+            <span>Takip Mod</span>
+            <strong id="tracked-mods">0</strong>
+            <em>Aktif paket</em>
+          </div>
+          <div class="summary-card">
+            <span>Son Guncelleme</span>
+            <strong id="last-updated">-</strong>
+            <em>Canli durum</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-body">
+        <label for="admin-secret">Gizli Patron Sifresi</label>
+        <input id="admin-secret" type="password" placeholder="OZEL SIFRE...">
+
+        <div class="button-row">
+          <button id="save-secret" class="primary-btn" type="button">Sifreyi Kaydet</button>
+          <button id="refresh-stats" class="ghost-btn" type="button">Veriyi Yenile</button>
+        </div>
+
+        <div id="worker-endpoint" class="endpoint-box">Henuz ayarlanmadi</div>
+        <div id="status-box" class="status-box">Patron sifreyi girince canli veriler acilir.</div>
+        <p id="helper-text" class="helper">Bu ekran sadece gizli anahtar ile gorunur.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-body">
+        <div class="feed-head">
+          <h2>Paket Istihbarat Akisi</h2>
+          <p>Canli indirme adetleri ve kullanici listesi.</p>
+        </div>
+        <div id="stats-cards" class="stats-cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/fivemods-counter-config.js?v=20260404-1"></script>
+  <script src="assets/admin-counter.js?v=20260406-1"></script>
+  <script src="assets/admin-mobile-install.js?v=20260404-1"></script>
+</body>
+</html>

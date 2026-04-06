@@ -1,8 +1,11 @@
-const CACHE_NAME = "fivemods-admin-mobile-v1";
+const CACHE_NAME = "fivemods-admin-mobile-v2";
 const ASSETS = [
+  "./admin-sayac-merkez.html",
+  "./admin-indirme-sayaci.html",
+  "./admin-indirme-sayaci-telefon.html",
   "./admin-indirme-sayaci-mobile-1.html",
   "./admin-indirme-sayaci-mobile-2.html",
-  "./assets/admin-counter.js?v=20260404-2",
+  "./assets/admin-counter.js?v=20260406-1",
   "./assets/admin-mobile-install.js?v=20260404-1",
   "./assets/fivemods-counter-config.js?v=20260404-1",
   "./assets/favicon.png?v=20260323-3"
@@ -43,7 +46,7 @@ self.addEventListener("fetch", function (event) {
         return cached;
       }
       return fetch(req).catch(function () {
-        return caches.match("./admin-indirme-sayaci-mobile-1.html");
+        return caches.match("./admin-indirme-sayaci-telefon.html");
       });
     })
   );
