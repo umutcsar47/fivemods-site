@@ -1,0 +1,46 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldStroke" x1="145" y1="92" x2="364" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF3C4"/>
+      <stop offset="0.34" stop-color="#F2D487"/>
+      <stop offset="0.7" stop-color="#C99339"/>
+      <stop offset="1" stop-color="#8E5D1C"/>
+    </linearGradient>
+    <linearGradient id="goldFill" x1="173" y1="138" x2="339" y2="336" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF0BF"/>
+      <stop offset="0.38" stop-color="#E9BF62"/>
+      <stop offset="1" stop-color="#9B6721"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="161" y1="106" x2="349" y2="405" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFEDB4" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#A06A20" stop-opacity="0.04"/>
+    </linearGradient>
+    <filter id="shadow" x="96" y="72" width="320" height="368" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.03 0 0 0 0 0.02 0 0 0 0 0.02 0 0 0 0.5 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <path d="M256 95L352 138V242C352 314 312 368 256 404C200 368 160 314 160 242V138L256 95Z" fill="url(#goldSoft)"/>
+    <path d="M256 95L352 138V242C352 314 312 368 256 404C200 368 160 314 160 242V138L256 95Z" stroke="url(#goldStroke)" stroke-width="16" stroke-linejoin="round"/>
+
+    <path d="M201 152L224 126L256 142L288 126L311 152" stroke="url(#goldStroke)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M216 172H296" stroke="url(#goldStroke)" stroke-width="12" stroke-linecap="round" opacity="0.92"/>
+
+    <path d="M205 200H300" stroke="url(#goldStroke)" stroke-width="16" stroke-linecap="round"/>
+    <path d="M205 255H282" stroke="url(#goldStroke)" stroke-width="16" stroke-linecap="round"/>
+    <path d="M205 200V314" stroke="url(#goldStroke)" stroke-width="20" stroke-linecap="round"/>
+
+    <path d="M286 314V200" stroke="url(#goldStroke)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M286 200L332 314" stroke="url(#goldStroke)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M286 200L240 314" stroke="url(#goldStroke)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M183 343C228 360 284 360 329 343" stroke="url(#goldFill)" stroke-width="10" stroke-linecap="round" opacity="0.86"/>
+  </g>
+</svg>

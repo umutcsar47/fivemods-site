@@ -1,11 +1,11 @@
-﻿(function () {
+(function () {
   const root = document.documentElement;
   const body = document.body;
   const usernameKey = "fivemods-user-name-v1";
   const usernameDownloadFile = "fivemods-user.json";
   const windowsAppSlug = "windows-app";
   const setupDownloadHref = new URL(
-    "downloads/FiveMods-Setup-1.2.7.exe?v=20260330-app-1",
+    "downloads/TurkFiveM-Modlari-Setup-1.2.8.exe?v=20260407-app-rename-1",
     window.location.href
   ).href;
 
@@ -184,9 +184,9 @@
     '<div class="fm-intro-light" aria-hidden="true"></div>',
     '<div class="fm-enter-shell">',
     logoSrc
-      ? '  <img class="fm-enter-logo" src="' + logoSrc + '" alt="FiveMods logo">'
+      ? '  <img class="fm-enter-logo" src="' + logoSrc + '" alt="Türk FiveM Modları logosu">'
       : '  <div class="fm-enter-logo"></div>',
-    '  <h1 class="fm-enter-title">FiveMods</h1>',
+    '  <h1 class="fm-enter-title">Türk FiveM Modları</h1>',
     '  <p class="fm-enter-copy">Guncel mod paketlerine girmeden once kullanici adini ayarla.</p>',
     '  <div class="fm-enter-user">',
     '    <label class="fm-enter-label" for="fm-enter-username">Kullanici adi</label>',
@@ -357,7 +357,7 @@
         );
       }
 
-      triggerFileDownload(buildWindowsAppDownloadHref(username), "FiveMods-Setup-1.2.7.exe");
+      triggerFileDownload(buildWindowsAppDownloadHref(username), "TurkFiveM-Modlari-Setup-1.2.8.exe");
     });
   }
 
