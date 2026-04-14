@@ -1,8 +1,6 @@
 (function () {
-  var usernameKey = "fivemods-user-name-v1";
-  var noTrackSlugs = {
-    "windows-app": true
-  };
+  var usernameKey = "turkfivem-user-name-v1";
+  var noTrackSlugs = {};
 
   function normalizeBaseUrl(value) {
     if (!value || typeof value !== "string") {
@@ -51,11 +49,11 @@
     return url.toString();
   }
 
-  var config = window.FiveModsCounterConfig || {};
+  var config = window.ModCounterConfig || {};
   var workerBaseUrl = normalizeBaseUrl(config.workerBaseUrl);
   var downloadLinks = document.querySelectorAll("[data-download-slug]");
 
-  window.FiveModsBuildTrackedDownloadUrl = function (slug, fallbackHref) {
+  window.buildTrackedDownloadUrl = function (slug, fallbackHref) {
     var tracked = buildTrackedDownloadUrl(slug);
     return tracked || fallbackHref || "";
   };

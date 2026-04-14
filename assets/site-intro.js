@@ -1,31 +1,13 @@
 (function () {
   const root = document.documentElement;
   const body = document.body;
-  const usernameKey = "fivemods-user-name-v1";
-  const usernameDownloadFile = "fivemods-user.json";
-  const windowsAppSlug = "windows-app";
-  const setupDownloadHref = new URL(
-    "downloads/TurkFiveM-Modlari-Setup-1.2.8.exe?v=20260407-app-rename-1",
-    window.location.href
-  ).href;
+  const usernameKey = "turkfivem-user-name-v1";
 
   const clearPending = function () {
     root.classList.remove("fm-intro-pending");
   };
 
   if (!body) {
-    clearPending();
-    return;
-  }
-
-  const pathName = (window.location.pathname || "").toLowerCase();
-  const isHomePage =
-    pathName.endsWith("/") ||
-    pathName.endsWith("/index.html") ||
-    pathName.endsWith("/fivemods-site") ||
-    pathName.endsWith("/fivemods-site/");
-
-  if (!isHomePage) {
     clearPending();
     return;
   }
@@ -98,69 +80,6 @@
 
   consumeBootstrapUserFromUrl();
 
-  const triggerFileDownload = function (href, fileName) {
-    const link = document.createElement("a");
-    link.href = href;
-    if (fileName) {
-      link.download = fileName;
-    }
-    link.rel = "noopener";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
-
-  const buildWindowsAppDownloadHref = function (username) {
-    if (typeof window.FiveModsBuildTrackedDownloadUrl === "function") {
-      try {
-        const trackedByHelper =
-          window.FiveModsBuildTrackedDownloadUrl(windowsAppSlug, setupDownloadHref) ||
-          setupDownloadHref;
-
-        if (!username) {
-          return trackedByHelper;
-        }
-
-        const helperUrl = new URL(trackedByHelper, window.location.href);
-        helperUrl.searchParams.set("user", username);
-        return helperUrl.toString();
-      } catch (error) {
-      }
-    }
-
-    try {
-      const cfg = window.FiveModsCounterConfig || {};
-      const base = String(cfg.workerBaseUrl || "").trim().replace(/\/+$/, "");
-      if (base) {
-        const directUrl = new URL(base + "/download/" + encodeURIComponent(windowsAppSlug));
-        if (username) {
-          directUrl.searchParams.set("user", username);
-        }
-        return directUrl.toString();
-      }
-    } catch (error) {
-    }
-
-    return setupDownloadHref;
-  };
-
-  const downloadUsernamePayload = function (username) {
-    const payload = {
-      username: username,
-      savedAt: new Date().toISOString(),
-      source: "fivemods-web-intro"
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {
-      type: "application/json;charset=utf-8"
-    });
-    const href = URL.createObjectURL(blob);
-    triggerFileDownload(href, usernameDownloadFile);
-    window.setTimeout(function () {
-      URL.revokeObjectURL(href);
-    }, 1600);
-  };
-
   const logo = document.querySelector(".logo-img");
   const metaImage = document.querySelector('meta[property="og:image"]');
   const aboutHref = new URL("hakkinda.html?v=20260330-opening-1", window.location.href).href;
@@ -197,7 +116,6 @@
     '    <button class="fm-enter-btn is-primary" type="button" data-fm-enter>GIRIS</button>',
     '    <a class="fm-enter-btn" href="https://discord.com/channels/1480897873682895064" target="_blank" rel="noopener noreferrer">DISCORD</a>',
     '    <a class="fm-enter-btn" href="' + aboutHref + '" data-fm-about>HAKKINDA</a>',
-    '    <button class="fm-enter-btn" type="button" data-fm-win-download>WINDOWS ICIN INDIRIN</button>',
     "  </div>",
     "</div>",
     '<div class="fm-enter-loading" aria-live="polite">',
@@ -215,7 +133,6 @@
   const light = intro.querySelector(".fm-intro-light");
   const enterButton = intro.querySelector("[data-fm-enter]");
   const usernameInput = intro.querySelector("#fm-enter-username");
-  const downloadButton = intro.querySelector("[data-fm-win-download]");
   const statusBox = intro.querySelector("[data-fm-user-status]");
 
   const setStatus = function (message, isError) {
@@ -336,28 +253,6 @@
 
     addListener(usernameInput, "input", function () {
       setStatus("", false);
-    });
-  }
-
-  if (downloadButton) {
-    addListener(downloadButton, "click", function () {
-      const username = sanitizeUsername(usernameInput ? usernameInput.value : "") || getStoredUsername();
-
-      if (username) {
-        setStoredUsername(username);
-        downloadUsernamePayload(username);
-        setStatus(
-          "Kullanici dosyasi olusturuldu. Uygulama " + username + " ile acilacak.",
-          false
-        );
-      } else {
-        setStatus(
-          "Kullanici adi olmadan indiriliyor. Uygulama acilisinda isim istenecek.",
-          true
-        );
-      }
-
-      triggerFileDownload(buildWindowsAppDownloadHref(username), "TurkFiveM-Modlari-Setup-1.2.8.exe");
     });
   }
 

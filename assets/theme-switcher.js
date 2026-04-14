@@ -3,8 +3,8 @@
   const panelId = "fm-theme-nav-panel";
   const triggerId = "fm-theme-nav-trigger";
   const wrapId = "fm-theme-nav-wrap";
-  const storageKey = "fivemods-site-theme-v1";
-  const usernameKey = "fivemods-user-name-v1";
+  const storageKey = "turkfivem-site-theme-v1";
+  const usernameKey = "turkfivem-user-name-v1";
 
   if (!root || !document.body) {
     return;

@@ -1,8 +1,8 @@
-﻿(function () {
-  var config = window.FiveModsCounterConfig || {};
+(function () {
+  var config = window.ModCounterConfig || {};
   var workerBaseUrl = (config.workerBaseUrl || "").trim().replace(/\/+$/, "");
   var refreshMs = Number(config.statsRefreshMs || 15000);
-  var storageKey = "fivemods_admin_secret";
+  var storageKey = "turkfivem_admin_secret";
 
   if (document.body) {
     var customStorageKey = (document.body.getAttribute("data-admin-storage-key") || "").trim();
@@ -112,7 +112,7 @@
     var secret = secretInput.value.trim();
 
     if (!workerBaseUrl) {
-      setStatus("Sayac servisi henuz baglanmadi. assets/fivemods-counter-config.js dosyasina worker adresi eklenmeli.", true);
+      setStatus("Sayac servisi henuz baglanmadi. assets/counter-config.js dosyasina worker adresi eklenmeli.", true);
       helperBox.textContent = "Worker adresi eklenmeden gercek sayac gorunmez.";
       return;
     }

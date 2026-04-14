@@ -25,9 +25,9 @@
     versiyon: ["version", "surum", "v"],
     guncel: ["latest", "yeni", "son"],
     yeni: ["new", "latest", "guncel", "son"],
-    five: ["fivem", "fivemods"],
-    fivem: ["five", "fivemods"],
-    fivemods: ["fivem", "five"]
+    five: ["fivem", "turkfivem"],
+    fivem: ["five", "turkfivem"],
+    turkfivem: ["fivem", "five"]
   };
 
   const normalize = (value) => (value || "")
@@ -248,7 +248,7 @@
       })
       .join(" ");
     const extra = card.dataset.search || "";
-    const raw = [extra, title, description, fileMeta, "fivem fivemods mod modlar paket script resource"].join(" ");
+    const raw = [extra, title, description, fileMeta, "fivem turkfivem mod modlar paket script resource"].join(" ");
 
     const extraAliases = [];
     if (clean(raw).includes("radio")) {
