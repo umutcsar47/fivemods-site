@@ -80,6 +80,17 @@
 
   consumeBootstrapUserFromUrl();
 
+  const currentPath = (window.location.pathname || "").toLowerCase();
+  const hasStoredUsername = Boolean(getStoredUsername());
+  const isHomePage =
+    !currentPath.includes("/mods/") &&
+    (currentPath === "" || currentPath.endsWith("/") || currentPath.endsWith("/index.html"));
+
+  if (!isHomePage || hasStoredUsername) {
+    clearPending();
+    return;
+  }
+
   const logo = document.querySelector(".logo-img");
   const metaImage = document.querySelector('meta[property="og:image"]');
   const aboutHref = new URL("hakkinda.html?v=20260330-opening-1", window.location.href).href;
