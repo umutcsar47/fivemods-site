@@ -2,6 +2,7 @@
   const root = document.documentElement;
   const body = document.body;
   const usernameKey = "turkfivem-user-name-v1";
+  const introSeenKey = "turkfivem-intro-seen-v1";
 
   const clearPending = function () {
     root.classList.remove("fm-intro-pending");
@@ -78,17 +79,39 @@
     }
   };
 
+  const hasSeenIntro = function () {
+    try {
+      return window.localStorage.getItem(introSeenKey) === "1";
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const markIntroSeen = function () {
+    try {
+      window.localStorage.setItem(introSeenKey, "1");
+    } catch (error) {
+    }
+  };
+
   consumeBootstrapUserFromUrl();
+  const storedUsername = getStoredUsername();
+
+  if (storedUsername && !hasSeenIntro()) {
+    markIntroSeen();
+  }
 
   const currentPath = (window.location.pathname || "").toLowerCase();
   const isHomePage =
     !currentPath.includes("/mods/") &&
     (currentPath === "" || currentPath.endsWith("/") || currentPath.endsWith("/index.html"));
 
-  if (!isHomePage) {
+  if (!isHomePage || hasSeenIntro()) {
     clearPending();
     return;
   }
+
+  markIntroSeen();
 
   const logo = document.querySelector(".logo-img");
   const metaImage = document.querySelector('meta[property="og:image"]');
@@ -155,7 +178,7 @@
   };
 
   if (usernameInput) {
-    usernameInput.value = getStoredUsername();
+    usernameInput.value = storedUsername;
   }
 
   const listeners = [];
