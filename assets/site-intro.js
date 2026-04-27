@@ -81,12 +81,11 @@
   consumeBootstrapUserFromUrl();
 
   const currentPath = (window.location.pathname || "").toLowerCase();
-  const hasStoredUsername = Boolean(getStoredUsername());
   const isHomePage =
     !currentPath.includes("/mods/") &&
     (currentPath === "" || currentPath.endsWith("/") || currentPath.endsWith("/index.html"));
 
-  if (!isHomePage || hasStoredUsername) {
+  if (!isHomePage) {
     clearPending();
     return;
   }
