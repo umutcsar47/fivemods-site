@@ -79,6 +79,23 @@
     }
   };
 
+  const consumeSkipIntroFromUrl = function () {
+    try {
+      const current = new URL(window.location.href);
+      const shouldSkipIntro = current.searchParams.get("fmSkipIntro") === "1";
+      if (!shouldSkipIntro) {
+        return false;
+      }
+
+      markIntroSeen();
+      current.searchParams.delete("fmSkipIntro");
+      window.history.replaceState({}, "", current.toString());
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   const hasSeenIntro = function () {
     try {
       return window.localStorage.getItem(introSeenKey) === "1";
@@ -95,6 +112,7 @@
   };
 
   consumeBootstrapUserFromUrl();
+  consumeSkipIntroFromUrl();
   const storedUsername = getStoredUsername();
 
   if (storedUsername && !hasSeenIntro()) {
