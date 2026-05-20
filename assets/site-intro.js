@@ -77,7 +77,9 @@
   }
 
   const currentPath = (window.location.pathname || "").toLowerCase();
-  const isHomePage = !currentPath.includes("/mods/") && (currentPath === "" || currentPath.endsWith("/") || currentPath.endsWith("/index.html"));
+  const isHomePage =
+    !currentPath.includes("/mods/") &&
+    (currentPath === "" || currentPath.endsWith("/") || currentPath.endsWith("/index.html"));
 
   consumeSkipIntro();
 
@@ -94,51 +96,50 @@
     '<div class="fm-intro-backdrop"></div>',
     '<div class="fm-intro-shell">',
     '  <div class="fm-intro-frame">',
-    '    <span class="fm-intro-badge">VIP GİRİŞ</span>',
+    '    <span class="fm-intro-badge">Giriş</span>',
     '    <div class="fm-intro-brand">',
     '      <img class="fm-intro-logo" src="assets/logo.png?v=20260323-3" alt="Türk FiveM Modları logosu">',
     '      <div>',
     '        <strong>Türk FiveM Modları</strong>',
-    '        <span>kullanıcı adını gir ve kasaya geç</span>',
+    '        <span>kullanıcı adını gir</span>',
     '      </div>',
     '    </div>',
     '    <div class="fm-intro-form">',
     '      <label class="fm-intro-label" for="fm-intro-username">Kullanıcı Adı</label>',
     '      <input id="fm-intro-username" class="fm-intro-input" type="text" maxlength="24" autocomplete="off" placeholder="ör. umut47">',
     '      <div class="fm-intro-status" data-fm-intro-status aria-live="polite"></div>',
-    '      <button class="fm-intro-submit" type="button" data-fm-intro-submit>Giriş Yap</button>',
+    '      <button class="fm-intro-submit" type="button" data-fm-intro-submit>Giriş</button>',
     '    </div>',
-    '    <div class="fm-intro-note">Bu ekran yalnızca ilk girişte gösterilir.</div>',
+    '    <div class="fm-intro-note">Bu ekran ilk girişte görünür.</div>',
     '  </div>',
-    '  <div class="fm-intro-ring" aria-hidden="true"></div>',
     '</div>'
-  ].join('');
+  ].join("");
 
-  const input = overlay.querySelector('#fm-intro-username');
-  const status = overlay.querySelector('[data-fm-intro-status]');
-  const submit = overlay.querySelector('[data-fm-intro-submit]');
+  const input = overlay.querySelector("#fm-intro-username");
+  const status = overlay.querySelector("[data-fm-intro-status]");
+  const submit = overlay.querySelector("[data-fm-intro-submit]");
 
   function setStatus(message, isError) {
     if (!status) {
       return;
     }
-    status.textContent = message || '';
-    status.classList.toggle('is-error', Boolean(isError));
+    status.textContent = message || "";
+    status.classList.toggle("is-error", Boolean(isError));
   }
 
   function closeIntro() {
-    body.classList.remove('fm-site-locked');
-    root.classList.remove('fm-site-locked');
+    body.classList.remove("fm-site-locked");
+    root.classList.remove("fm-site-locked");
     clearPending();
     window.setTimeout(function () {
       overlay.remove();
-    }, 1100);
+    }, 920);
   }
 
   function completeIntro() {
-    const username = setStoredUsername(input ? input.value : '');
+    const username = setStoredUsername(input ? input.value : "");
     if (!username) {
-      setStatus('3-24 karakter arası bir kullanıcı adı gir.', true);
+      setStatus("3-24 karakter arası kullanıcı adı gir.", true);
       if (input) {
         input.focus();
       }
@@ -146,13 +147,13 @@
     }
 
     markIntroSeen();
-    setStatus('Giriş hazırlanıyor...', false);
-    overlay.classList.add('is-entering');
+    setStatus("Yükleniyor...", false);
+    overlay.classList.add("is-entering");
     closeIntro();
   }
 
-  body.classList.add('fm-site-locked');
-  root.classList.add('fm-site-locked');
+  body.classList.add("fm-site-locked");
+  root.classList.add("fm-site-locked");
   body.appendChild(overlay);
 
   if (input) {
@@ -162,26 +163,26 @@
       if (storedUsername) {
         input.select();
       }
-    }, 160);
+    }, 150);
 
-    input.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
         event.preventDefault();
         completeIntro();
       }
     });
 
-    input.addEventListener('input', function () {
-      setStatus('', false);
+    input.addEventListener("input", function () {
+      setStatus("", false);
     });
   }
 
   if (submit) {
-    submit.addEventListener('click', completeIntro);
+    submit.addEventListener("click", completeIntro);
   }
 
   window.requestAnimationFrame(function () {
-    overlay.classList.add('is-visible');
+    overlay.classList.add("is-visible");
     clearPending();
   });
 })();
